@@ -1360,6 +1360,7 @@ var home = location.href,
           appId: mashiro_option.v_appId,
           appKey: mashiro_option.v_appKey,
           verify: mashiro_option.v_verify,
+          avatar: mashiro_option.v_avatar,
           path: window.location.pathname,
           placeholder: "你是我一生只会遇见一次的惊喜 ...",
         });
