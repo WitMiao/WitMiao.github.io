@@ -1355,6 +1355,7 @@ var home = location.href,
     VA: function () {
       if (!valine) {
         var valine = new Valine();
+        
         valine.init({
           el: "#vcomments",
           appId: mashiro_option.v_appId,
