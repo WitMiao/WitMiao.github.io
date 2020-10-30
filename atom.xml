@@ -32,9 +32,9 @@
       <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
-    
       <category term="前端" scheme="/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
     
   </entry>
   
@@ -76,9 +76,9 @@
       <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="算法" scheme="/tags/%E7%AE%97%E6%B3%95/"/>
-    
       <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="算法" scheme="/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
