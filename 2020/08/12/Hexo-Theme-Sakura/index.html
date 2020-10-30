@@ -423,12 +423,12 @@ git --version //检查git版本
 <h3 id="1-基本准备"><a href="#1-基本准备" class="headerlink" title="1 . 基本准备"></a>1 . 基本准备</h3><h4 id="1-GitHub-Pages"><a href="#1-GitHub-Pages" class="headerlink" title="(1) GitHub Pages"></a>(1) GitHub Pages</h4><p>GitHub Pages国内速度不理想</p>
 <p>使用其他静态页面服务请先跳转至 加速优化 部分</p>
 <h5 id="①新建一个GitHub仓库，名为-USERNAME-github-io-USERNAME-为你的GitHub用户名），勾选-初始化README（即Initualize-this-repository-with-README），创建仓库"><a href="#①新建一个GitHub仓库，名为-USERNAME-github-io-USERNAME-为你的GitHub用户名），勾选-初始化README（即Initualize-this-repository-with-README），创建仓库" class="headerlink" title="①新建一个GitHub仓库，名为 |USERNAME|.github.io (|USERNAME|为你的GitHub用户名），勾选 初始化README（即Initualize this repository with README），创建仓库"></a>①新建一个GitHub仓库，名为 |USERNAME|.github.io (|USERNAME|为你的GitHub用户名），勾选 初始化README（即Initualize this repository with README），创建仓库</h5><h5 id="②进入仓库的设置界面（Settings），找到GitHub-Pages一栏，将Source中的-None-改为-master-branch"><a href="#②进入仓库的设置界面（Settings），找到GitHub-Pages一栏，将Source中的-None-改为-master-branch" class="headerlink" title="②进入仓库的设置界面（Settings），找到GitHub Pages一栏，将Source中的 None 改为 master branch"></a>②进入仓库的设置界面（Settings），找到GitHub Pages一栏，将Source中的 None 改为 master branch</h5><h4 id="2-Hexo"><a href="#2-Hexo" class="headerlink" title="(2) Hexo"></a>(2) Hexo</h4><h5 id="①安装"><a href="#①安装" class="headerlink" title="①安装"></a>①安装</h5><p>在任意位置新建一个文件夹作为你的博客文件夹（这里博客文件夹以\Blog代替），在\Blog中右键，点击 Git Bash Here，输入以下内容</p>
-<pre><code class="bash">npm i hexo-cli -g //安装Hexo
+<pre><code class="text">npm i hexo-cli -g //安装Hexo
 hexo -v           //验证安装
 hexo init         //初始化\Blog文件夹
 npm install       //安装基本组件
 </code></pre>
-<h5 id="②预览"><a href="#②预览" class="headerlink" title="②预览"></a>②预览</h5><pre><code class="bash">hexo g   //生成静态页面
+<h5 id="②预览"><a href="#②预览" class="headerlink" title="②预览"></a>②预览</h5><pre><code class="text">hexo g   //生成静态页面
 hexo s   //打开本地服务器
 </code></pre>
 <p>进入浏览器访问 localhost:4000 你可以进入你的Hexo博客页面</p>
@@ -437,7 +437,7 @@ hexo s   //打开本地服务器
 <p>其他主题请参照制作者自述或其他教程</p>
 <p>你可以再用 hexo g &amp;&amp; hexo s 检查主题是否生效</p>
 <h4 id="2-连接到GitHub"><a href="#2-连接到GitHub" class="headerlink" title="(2)连接到GitHub"></a>(2)连接到GitHub</h4><p>打开Git Bash，键入：</p>
-<pre><code class="bash">git config --global user.name &quot;Username&quot;  //Username更换为你的GitHub用户名
+<pre><code class="text">git config --global user.name &quot;Username&quot;  //Username更换为你的GitHub用户名
 
 git config --global user.email &quot;Email&quot;    //Email更换为你的GitHub注册邮箱
 SSH Key生成：
@@ -455,7 +455,7 @@ cat ~/.ssh/id_rsa.pub         //查看
 <h5 id="②-自定义域名"><a href="#②-自定义域名" class="headerlink" title="② 自定义域名"></a>② 自定义域名</h5><p>若已购买域名（可不备案），可在 \Blog\Source\ 中创建文件 CNAME （无后缀名） 右键编辑，改为你的自定义域名，然后在你的域名DNS解析中添加一个CNAME记录，地址为|USERNAME|.github.io</p>
 <p>若未购买域名，可将CNAME中写 |USERNAME|.github.io作为访问域名</p>
 <h5 id="③-部署"><a href="#③-部署" class="headerlink" title="③ 部署"></a>③ 部署</h5><p>在 \Blog 中右键，Git Bash Here，键入</p>
-<pre><code class="bash">hexo g //生成静态页面
+<pre><code class="text">hexo g //生成静态页面
 hexo d //部署到GitHub
 </code></pre>
 <p>完成后在浏览器中输入你的域名，正常访问即部署完成</p>
@@ -644,8 +644,7 @@ comments: true
 photos: https://cdn.jsdelivr.net/gh/honjun/cdn@1.4/img/banner/comment.jpg
 ---
 </code></pre>
-<h2 id="单页面配置"><a href="#单页面配置" class="headerlink" title="单页面配置"></a>单页面配置</h2><h3 id="番组计划页-（请直接在下载后的文件中改，下面的添加了注释可能会有些影响）"><a href="#番组计划页-（请直接在下载后的文件中改，下面的添加了注释可能会有些影响）" class="headerlink" title="番组计划页 （请直接在下载后的文件中改，下面的添加了注释可能会有些影响）"></a>番组计划页 （请直接在下载后的文件中改，下面的添加了注释可能会有些影响）</h3><p><img src="https://wx2.sinaimg.cn/large/006bYVyvly1g07b2gyx60j31090jjahj.jpg" alt></p>
-<pre><code class="yml">---
+<h2 id="单页面配置"><a href="#单页面配置" class="headerlink" title="单页面配置"></a>单页面配置</h2><h3 id="番组计划页-（请直接在下载后的文件中改，下面的添加了注释可能会有些影响）"><a href="#番组计划页-（请直接在下载后的文件中改，下面的添加了注释可能会有些影响）" class="headerlink" title="番组计划页 （请直接在下载后的文件中改，下面的添加了注释可能会有些影响）"></a>番组计划页 （请直接在下载后的文件中改，下面的添加了注释可能会有些影响）</h3><pre><code class="yml">---
 layout: bangumi
 title: bangumi
 comments: false
@@ -729,7 +728,7 @@ links:
 <pre><code class="md">{% fb_img src [caption] %}
 </code></pre>
 <p>详细使用教程详见<a href="https://github.com/honjun/hexo-tag-fancybox_img/blob/master/README-zh_cn.md" target="_blank" rel="noopener">hexo-tag-fancybox_img</a></p>
-<h2 id="还有啥，一时想不起来……"><a href="#还有啥，一时想不起来……" class="headerlink" title="还有啥，一时想不起来……"></a>还有啥，一时想不起来……</h2><p>To be continued…</p>
+<p>To be continued…</p>
 
         </div>
         <!-- .entry-content -->
