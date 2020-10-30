@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">获取质数算法：埃拉托斯特尼筛法 | miaoda</title>
+  <title itemprop="name">Tag: 前端 | miaoda</title>
   
     <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/WitMiao/blogAssets@0.0.8/img/custom/favicon.ico">
   
@@ -383,156 +383,64 @@
   </div>
 </header>
 
-      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+      
 <div class="pattern-center-blank"></div>
-
+<div class="pattern-center ">
+  <div class="pattern-attachment-img">
+    <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="前端.img" class="lazyload" onerror="imgError(this,3)" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;">
+  </div>
+  <header class="pattern-header ">
+    <h1 class="cat-title">前端</h1>
+  </header>
+</div>
 <div id="content" class="site-content">
   <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
-      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
-        <div class="toc"></div>
-        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
-        
-          <header class="entry-header">
-            <h1 class="entry-title">获取质数算法：埃拉托斯特尼筛法</h1>
-            <p class="entry-census">苗大&nbsp;·&nbsp;2020-8-11&nbsp;·&nbsp;<span id="busuanzi_value_page_pv"></span>次阅读</p></p>
-
-            <hr>
-          </header>
-        
-        <div class="entry-content">
-          <h2 id="埃拉托斯特尼筛法"><a href="#埃拉托斯特尼筛法" class="headerlink" title="埃拉托斯特尼筛法"></a>埃拉托斯特尼筛法</h2><p>本算法的核心思想是：给出要筛选数值的范围 n，找出 √𝑛 以内的素数 p1, p2…, p𝑘。先用 2 去筛，即把 2 留下，把 2 的倍数剔除掉；再用下一个素数，也就是 3 筛，把 3 留下，把 3 的倍数剔除掉；接下去用下一个素数 5 筛，把 5 留下，把 5 的倍数剔除掉；不断重复下去……</p>
-<p>如下图所示：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WitMiao/blogPic/img/Sieve_of_Eratosthenes_animation.gif" alt></p>
-<p>下面是本算法的实现代码：</p>
-<pre><code class="js">var primesList = function(n) {
-    let list = [];
-    let signs = new Uint8Array(n);
-
-    for (let i = 2; i &lt; n; i++) {
-        if (!signs[i - 1]) {
-            list.push(i);
-
-            for (let j = i * i; j &lt;= n; j += i) {
-                signs[j - 1] = true;
-            }
-        }
-    }
-    return list;
-};
-let result = primesList(100);
-console.log(&quot;list: &quot; + result);
-console.log(&quot;count: &quot; + result.length);
-</code></pre>
-<ul>
-<li><p>时间复杂度：O(n * loglog n)</p>
-</li>
-<li><p>空间复杂度：O(n)</p>
-</li>
-</ul>
-<p>参考资料：</p>
-<ul>
-<li><a href="https://zh.wikipedia.org/wiki/埃拉托斯特尼筛法" target="_blank" rel="noopener">埃拉托斯特尼筛法 — 维基百科</a></li>
-</ul>
-
-        </div>
-        <!-- .entry-content -->
-        <div class="single-reward">
-          <div class="reward-open">赏
-            <div class="reward-main">
-              <ul class="reward-row">
-                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/WitMiao/blogAssets@0.0.8undefined"></li>
-                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/WitMiao/blogAssets@0.0.8undefined"></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
-        <footer class="post-footer">
-          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
-          <div class="post-tags">
-          </div>
-          <div class="post-share">
-            <div class="social-share sharehidden share-component"></div>
-            <i class="iconfont show-share icon-forward"></i>
-          </div>
-        </footer><!-- .entry-footer -->
-      </article>
-      <!-- #post-## -->
-      <div class="toc" style="background: none;"></div>
-      <section class="post-squares nextprev">
-        
-          
-            <div class="post-nepre half previous">
-          
-            <a href="/2020/10/30/jQuery-input输入验证/" rel="prev">
-              <div class="background">
-                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
-              </div>
-              <span class="label">
-              Previous Post</span>
-              <div class="info">
-                <h3>
-                jQuery-input输入验证</h3>
-                <hr>
-              </div>
-            </a>
-          </div>
-        
-        
-          
-            <div class="post-nepre half next">
-          
-            <a href="/2020/07/21/hello-world/" rel="next">
-              <div class="background">
-                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
-              </div>
-              <span class="label">
-              Next Post</span>
-              <div class="info">
-                <h3>
-                Hello World</h3>
-                <hr>
-              </div>
-            </a>
-          </div>
-        
-      </section>
       
-<div id="vcomments"></div>
-<script>
-  window.onload = function(){
-      var valine = new Valine();
-      valine.init({
-        el: '#vcomments',
-        appId: "QcvXSbmzMnoQqTzJPzdPnGGc-gzGzoHsz",
-        appKey: "cFdSUREMDewBegMTetWHHaLs",
-        path: window.location.pathname,
-        placeholder: "想说些什么呢 ..."
-      })
-  }
-</script>
-
-      <section class="author-profile">
-        <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
-          <a href="miaoda.co" class="profile gravatar"><img src="https://cdn.jsdelivr.net/gh/WitMiao/blogAssets/img/custom/avatar.jpg" itemprop="image" alt="苗大" height="70" width="70"></a>
-          <div class="meta">
-            <span class="title">Author</span>
-            <h3 itemprop="name">
-            <a href="miaoda.co" itemprop="url" rel="author">苗大</a>
-            </h3>
-          </div>
+  <!-- 首页默认取最最新文章集 -->
+  
+    <article class="post post-list" itemscope="" itemtype="https://schema.org/BlogPosting">
+  <div class="post-entry">
+    <div class="feature">
+      <a href="/2020/10/30/jQuery-input输入验证/">
+        <div class="overlay">
+          <i class="iconfont icon-text">
+          </i>
         </div>
-        <hr>
-        <p><i class="iconfont icon-write"></i>我不是天生的王者，但我骨子里流动着不让我低头的血液!</p>
-      </section>
-    </main><!-- #main -->
-  </div><!-- #primary -->
+        <img width="150" height="150" src="" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
+      </a>
+    </div>
+    <h1 class="entry-title">
+    <a href="/2020/10/30/jQuery-input输入验证/">
+    jQuery-input输入验证</a>
+    </h1>
+    <div class="p-time">
+      <i class="iconfont icon-time">
+      </i>
+    2020-10-30</div>
+    <p>
+    jQuery-input输入验证</p>
+    <footer class="entry-footer">
+      <div class="post-more">
+        <a href="/2020/10/30/jQuery-input输入验证/">
+          <i class="iconfont icon-caidan">
+          </i>
+        </a>
+      </div>
+    </footer>
+  </div>
+  <hr>
+</article>
+  
+
+
+      <div class="clearer">
+      </div>
+    </main>
+    <!--  -->
+    
+  </div>
 </div>
-
-
-
     </div>    
     <div class="ins-search">
     <div class="ins-search-mask"></div>

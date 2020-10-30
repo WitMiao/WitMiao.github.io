@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2020-08-11T08:15:12.810Z</updated>
+  <updated>2020-10-30T07:37:44.321Z</updated>
   <id>/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>jQuery-input输入验证</title>
+    <link href="/2020/10/30/jQuery-input%E8%BE%93%E5%85%A5%E9%AA%8C%E8%AF%81/"/>
+    <id>/2020/10/30/jQuery-input输入验证/</id>
+    <published>2020-10-30T07:00:00.000Z</published>
+    <updated>2020-10-30T07:37:44.321Z</updated>
+    
+    <summary type="html">
+    
+      jQuery-input输入验证
+    
+    </summary>
+    
+      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="前端" scheme="/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
   
   <entry>
     <title>获取质数算法：埃拉托斯特尼筛法</title>
@@ -32,9 +54,9 @@
       <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="算法" scheme="/tags/%E7%AE%97%E6%B3%95/"/>
-    
       <category term="技术" scheme="/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="算法" scheme="/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   

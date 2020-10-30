@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">获取质数算法：埃拉托斯特尼筛法 | miaoda</title>
+  <title itemprop="name">jQuery-input输入验证 | miaoda</title>
   
     <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/WitMiao/blogAssets@0.0.8/img/custom/favicon.ico">
   
@@ -395,45 +395,137 @@
         <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
         
           <header class="entry-header">
-            <h1 class="entry-title">获取质数算法：埃拉托斯特尼筛法</h1>
-            <p class="entry-census">苗大&nbsp;·&nbsp;2020-8-11&nbsp;·&nbsp;<span id="busuanzi_value_page_pv"></span>次阅读</p></p>
+            <h1 class="entry-title">jQuery-input输入验证</h1>
+            <p class="entry-census">苗大&nbsp;·&nbsp;2020-10-30&nbsp;·&nbsp;<span id="busuanzi_value_page_pv"></span>次阅读</p></p>
 
             <hr>
           </header>
         
         <div class="entry-content">
-          <h2 id="埃拉托斯特尼筛法"><a href="#埃拉托斯特尼筛法" class="headerlink" title="埃拉托斯特尼筛法"></a>埃拉托斯特尼筛法</h2><p>本算法的核心思想是：给出要筛选数值的范围 n，找出 √𝑛 以内的素数 p1, p2…, p𝑘。先用 2 去筛，即把 2 留下，把 2 的倍数剔除掉；再用下一个素数，也就是 3 筛，把 3 留下，把 3 的倍数剔除掉；接下去用下一个素数 5 筛，把 5 留下，把 5 的倍数剔除掉；不断重复下去……</p>
-<p>如下图所示：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/WitMiao/blogPic/img/Sieve_of_Eratosthenes_animation.gif" alt></p>
-<p>下面是本算法的实现代码：</p>
-<pre><code class="js">var primesList = function(n) {
-    let list = [];
-    let signs = new Uint8Array(n);
-
-    for (let i = 2; i &lt; n; i++) {
-        if (!signs[i - 1]) {
-            list.push(i);
-
-            for (let j = i * i; j &lt;= n; j += i) {
-                signs[j - 1] = true;
+          <h2 id="jQuery-input输入验证"><a href="#jQuery-input输入验证" class="headerlink" title="jQuery-input输入验证"></a>jQuery-input输入验证</h2><p>前言：原先直接引用inputmask.js来做输入验证，但后来发现它和 onkeyup 事件有相同的 bug，那就是在中文输入法状态下，输入汉字之后直接回车，会直接输入字母。于是就需要寻找替代品，一开始找到了 oninput  事件，但使用了一会儿发现也存在 bug，当先输入一些字符时再切换中文输入法输入，之前输入的字符会消失相应的字符数量。最后只能自己写共通方法来进行验证：</p>
+<pre><code class="js">/**
+ * 输入验证共通
+ * @param selector 选择器
+ * @param reg 正则表达式
+ * @param endFunc 输入结束后的验证方法
+ * @param endParam endFunc方法的参数
+ * @param onblurStr 离开input框操作的方法名（字符串）
+ */
+function inputValidation(selector, reg, endFunc, endParam, onblurStr) {
+    var isInputZh = false;
+    var search = document.querySelectorAll(selector);
+    $.each(search, function (i, item) {
+        item.addEventListener(&#39;compositionstart&#39;, function (e) {
+            isInputZh = true;
+        }, false);
+        item.addEventListener(&#39;compositionend&#39;, function (e) {
+            isInputZh = false;
+            validate(item, reg);
+            if (endFunc !== undefined) {
+                endFunc(item, endParam);
             }
+        }, false);
+        item.addEventListener(&#39;input&#39;, function (e) {
+            if (isInputZh) return;
+            validate(item, reg);
+            if (endFunc !== undefined) {
+                endFunc(item, endParam);
+            }
+        }, false);
+
+        if (onblurStr !== undefined) {
+            $(item).attr(&quot;onblur&quot;, onblurStr + &quot;(this)&quot;);
+        }
+    });
+
+    function validate(valDom, reg) {
+        var domVal = $(valDom).val();
+        $(valDom).val(domVal.match(reg));
+    }
+}
+</code></pre>
+<p>一些验证的辅助方法：</p>
+<pre><code class="js">/**
+ * 数字设置最大值，并去除开头0
+ * @param item dom对象
+ * @param max 最大值（可为空）
+ */
+function validateNumMax(item, max) {
+    var _this = $(item);
+    if (_this.val().match(/^0\d+/)) {
+        _this.val(_this.val().substr(1));
+    }
+    if (max !== undefined &amp;&amp; (Number(_this.val()) &gt; max)) {
+        _this.val(max);
+    }
+}
+
+/**
+ * 去除数字末尾的小数点
+ * @param item dom对象
+ */
+function validateRemovePoint(item) {
+    var _this = $(item);
+    var _thisVal = _this.val();
+    if (_thisVal.match(/\d*\.$/)) {
+        _this.val(_thisVal.substr(0, _thisVal.length - 1));
+    }
+}
+
+/**
+ * 验证邮箱格式
+ * @param item dom对象
+ */
+function isEmail(item) {
+    var strEmail = $(item).val();
+    strEmail = strEmail.trim();
+    $(item).val(strEmail);
+    if (strEmail != &#39;&#39;) {
+        if (strEmail.search(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/) != -1) {
+            return true;
+        } else {
+            $(item).focus();
+            $(item).val(&#39;&#39;);
+            alert(&quot;邮箱格式不对&quot;);
         }
     }
-    return list;
-};
-let result = primesList(100);
-console.log(&quot;list: &quot; + result);
-console.log(&quot;count: &quot; + result.length);
+}
 </code></pre>
-<ul>
-<li><p>时间复杂度：O(n * loglog n)</p>
-</li>
-<li><p>空间复杂度：O(n)</p>
-</li>
-</ul>
+<p>最后调用共通方法：</p>
+<pre><code class="js">//只能英文或数字(3位)
+inputValidation(&quot;.letterNum-inputmask&quot;, /[a-zA-Z0-9]{1,3}/);
+
+//只能英文或数字(2位)
+inputValidation(&quot;.letterNum-inputmask2&quot;, /[a-zA-Z0-9]{1,2}/);
+
+//只能英文或数字
+inputValidation(&quot;.letterNumOnly-inputmask&quot;, /[a-zA-Z0-9]+/);
+
+//只能输入整数
+inputValidation(&quot;.level-inputmask&quot;, /^\d+/);
+
+//只能输入0-100的整数
+inputValidation(&quot;.hundred-inputmask&quot;, /^\d+/, validateNumMax, 100);
+
+//只能输入0~1的数，两位小数
+inputValidation(&quot;.scoreDecimal-inputmask&quot;, /[0-9]+\.?[0-9]{0,2}/, validateNumMax, 1, &quot;validateRemovePoint&quot;);
+
+//只能输入两位小数的数字
+inputValidation(&quot;.decimalTwo-inputmask&quot;, /[0-9]+\.?[0-9]{0,2}/, validateNumMax, undefined, &quot;validateRemovePoint&quot;);
+
+//只能输入一位小数的数字
+inputValidation(&quot;.decimalOne-inputmask&quot;, /[0-9]+\.?[0-9]?/, validateNumMax, undefined, &quot;validateRemovePoint&quot;);
+
+//可小数的数字
+inputValidation(&quot;.decimal-inputmask,.numeric-inputmask&quot;, /[0-9]+\.?[0-9]*/, validateNumMax, undefined, &quot;validateRemovePoint&quot;);
+
+//email
+inputValidation(&quot;.email-inputmask&quot;, /^[.a-zA-Z0-9_-]+@?[.a-zA-Z0-9_-]*/,undefined,undefined,&quot;isEmail&quot;);
+</code></pre>
 <p>参考资料：</p>
 <ul>
-<li><a href="https://zh.wikipedia.org/wiki/埃拉托斯特尼筛法" target="_blank" rel="noopener">埃拉托斯特尼筛法 — 维基百科</a></li>
+<li><a href="https://blog.csdn.net/w6990548/article/details/79388905" target="_blank" rel="noopener">如何在HTML中限制input 输入框只能输入纯数字</a></li>
+<li><a href="https://f-e-d.club/topic/compatible-with-processing-and-chinese-input-method-to-optimize-the-input-events.article" target="_blank" rel="noopener">input 事件兼容处理以及中文输入法优化</a></li>
 </ul>
 
         </div>
@@ -463,28 +555,11 @@ console.log(&quot;count: &quot; + result.length);
       <div class="toc" style="background: none;"></div>
       <section class="post-squares nextprev">
         
-          
-            <div class="post-nepre half previous">
-          
-            <a href="/2020/10/30/jQuery-input输入验证/" rel="prev">
-              <div class="background">
-                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
-              </div>
-              <span class="label">
-              Previous Post</span>
-              <div class="info">
-                <h3>
-                jQuery-input输入验证</h3>
-                <hr>
-              </div>
-            </a>
-          </div>
-        
         
           
-            <div class="post-nepre half next">
+            <div class="post-nepre full next">
           
-            <a href="/2020/07/21/hello-world/" rel="next">
+            <a href="/2020/08/11/获取质数算法：埃拉托斯特尼筛法/" rel="next">
               <div class="background">
                 <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
               </div>
@@ -492,7 +567,7 @@ console.log(&quot;count: &quot; + result.length);
               Next Post</span>
               <div class="info">
                 <h3>
-                Hello World</h3>
+                获取质数算法：埃拉托斯特尼筛法</h3>
                 <hr>
               </div>
             </a>
