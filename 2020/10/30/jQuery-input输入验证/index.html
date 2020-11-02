@@ -447,7 +447,7 @@ function isEmail(item) {
     }
 }
 </code></pre>
-<h2 id="调用共通方法："><a href="#调用共通方法：" class="headerlink" title="调用共通方法："></a>调用共通方法：</h2><pre><code class="js">//只能英文或数字(3位)
+<h2 id="调用共通方法（Class名沿用之前inputmask）："><a href="#调用共通方法（Class名沿用之前inputmask）：" class="headerlink" title="调用共通方法（Class名沿用之前inputmask）："></a>调用共通方法（Class名沿用之前inputmask）：</h2><pre><code class="js">//只能英文或数字(3位)
 inputValidation(&quot;.letterNum-inputmask&quot;, /[a-zA-Z0-9]{1,3}/);
 
 //只能英文或数字(2位)
@@ -472,7 +472,7 @@ inputValidation(&quot;.decimalTwo-inputmask&quot;, /[0-9]+\.?[0-9]{0,2}/, valida
 inputValidation(&quot;.decimalOne-inputmask&quot;, /[0-9]+\.?[0-9]?/, validateNumMax, undefined, &quot;validateRemovePoint&quot;);
 
 //可小数的数字
-inputValidation(&quot;.decimal-inputmask,.numeric-inputmask&quot;, /[0-9]+\.?[0-9]*/, validateNumMax, undefined, &quot;validateRemovePoint&quot;);
+inputValidation(&quot;.decimal-inputmask&quot;, /[0-9]+\.?[0-9]*/, validateNumMax, undefined, &quot;validateRemovePoint&quot;);
 
 //email
 inputValidation(&quot;.email-inputmask&quot;, /^[.a-zA-Z0-9_-]+@?[.a-zA-Z0-9_-]*/,undefined,undefined,&quot;isEmail&quot;);
