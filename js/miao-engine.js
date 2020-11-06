@@ -1,6 +1,6 @@
-$(function(){
+window.onload = function(){
      miaoEngine();
-})
+}
 function miaoEngine(){
     let t, e;
     const n = new Set,
