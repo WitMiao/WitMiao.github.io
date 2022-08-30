@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>miaoda</title>
+  
+  
+  <link href="https://miaoda.fun/atom.xml" rel="self"/>
+  
+  <link href="https://miaoda.fun/"/>
+  <updated>2022-02-22T03:54:13.351Z</updated>
+  <id>https://miaoda.fun/</id>
+  
+  <author>
+    <name>miaoda</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="https://miaoda.fun/2022/02/22/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/"/>
+    <id>https://miaoda.fun/2022/02/22/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/</id>
+    <published>2022-02-22T03:48:03.180Z</published>
+    <updated>2022-02-22T03:54:13.351Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;前端开发规范&lt;br&gt;规范目的&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;为提高团队协作效率&lt;/li&gt;
+&lt;li&gt;便于后期添加功能及优化维护&lt;/li&gt;
+&lt;li&gt;输出高质量的文档&lt;br&gt;命名规范&lt;/li&gt;
+&lt;li&gt;为了让大家书写可维护的代码，而不是一次性的代码&lt;/li&gt;
+&lt;li&gt;让团队当中其他人</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="https://miaoda.fun/2022/02/22/Web%20%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-CSS3%20%E7%A1%AC%E4%BB%B6%E5%8A%A0%E9%80%9F(GPU%20%E5%8A%A0%E9%80%9F)/"/>
+    <id>https://miaoda.fun/2022/02/22/Web%20%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-CSS3%20%E7%A1%AC%E4%BB%B6%E5%8A%A0%E9%80%9F(GPU%20%E5%8A%A0%E9%80%9F)/</id>
+    <published>2022-02-22T03:44:40.181Z</published>
+    <updated>2022-02-22T03:45:57.320Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Web 性能优化-CSS3 硬件加速(GPU 加速)&lt;br&gt;CSS3 硬件加速简介&lt;br&gt;CSS3 硬件加速又叫做 GPU 加速，是利用 GPU 进行渲染，减少 CPU 操作的一种优化方案。由于 GPU 中的 transform 等 CSS 属性不会触发</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="https://miaoda.fun/2022/02/22/%E7%BD%91%E9%A1%B5%E8%AE%BE%E8%AE%A1%E6%8E%A2%E7%B4%A2/"/>
+    <id>https://miaoda.fun/2022/02/22/%E7%BD%91%E9%A1%B5%E8%AE%BE%E8%AE%A1%E6%8E%A2%E7%B4%A2/</id>
+    <published>2022-02-22T03:27:02.295Z</published>
+    <updated>2022-02-22T03:29:53.538Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;网页设计探索&lt;br&gt;一、背景&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;背景：由于游测新官网重构的需要，项目组内无设计人员，故需进行网页设计探索&lt;/li&gt;
+&lt;li&gt;技术定位：初级&lt;/li&gt;
+&lt;li&gt;目标群体：前端开发&lt;/li&gt;
+&lt;li&gt;技术应用场景：设计网页参考文章&lt;/li&gt;
+&lt;li&gt;整体</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>angular 页面内跳转(锚点定位被顶部固定导航栏遮住)踩坑记录</title>
+    <link href="https://miaoda.fun/2021/08/27/angular%20%E9%A1%B5%E9%9D%A2%E5%86%85%E8%B7%B3%E8%BD%AC(%E9%94%9A%E7%82%B9%E5%AE%9A%E4%BD%8D%E8%A2%AB%E9%A1%B6%E9%83%A8%E5%9B%BA%E5%AE%9A%E5%AF%BC%E8%88%AA%E6%A0%8F%E9%81%AE%E4%BD%8F)%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/"/>
+    <id>https://miaoda.fun/2021/08/27/angular%20%E9%A1%B5%E9%9D%A2%E5%86%85%E8%B7%B3%E8%BD%AC(%E9%94%9A%E7%82%B9%E5%AE%9A%E4%BD%8D%E8%A2%AB%E9%A1%B6%E9%83%A8%E5%9B%BA%E5%AE%9A%E5%AF%BC%E8%88%AA%E6%A0%8F%E9%81%AE%E4%BD%8F)%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/</id>
+    <published>2021-08-27T06:00:00.000Z</published>
+    <updated>2022-02-22T02:50:37.673Z</updated>
+    
+    
+    <summary type="html">angular 页面内跳转(锚点定位被顶部固定导航栏遮住)踩坑记录</summary>
+    
+    
+    
+    <category term="技术" scheme="https://miaoda.fun/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="前端" scheme="https://miaoda.fun/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+    <category term="angular" scheme="https://miaoda.fun/tags/angular/"/>
+    
+    <category term="技术" scheme="https://miaoda.fun/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>angular调用百度地图api踩坑记录</title>
+    <link href="https://miaoda.fun/2021/08/16/angular%E8%B0%83%E7%94%A8%E7%99%BE%E5%BA%A6%E5%9C%B0%E5%9B%BEapi%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/"/>
+    <id>https://miaoda.fun/2021/08/16/angular%E8%B0%83%E7%94%A8%E7%99%BE%E5%BA%A6%E5%9C%B0%E5%9B%BEapi%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/</id>
+    <published>2021-08-16T05:30:00.000Z</published>
+    <updated>2022-02-22T02:50:37.673Z</updated>
+    
+    
+    <summary type="html">angular调用百度地图api踩坑记录</summary>
+    
+    
+    
+    <category term="技术" scheme="https://miaoda.fun/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="前端" scheme="https://miaoda.fun/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+    <category term="angular" scheme="https://miaoda.fun/tags/angular/"/>
+    
+    <category term="技术" scheme="https://miaoda.fun/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>jQuery-input输入验证</title>
+    <link href="https://miaoda.fun/2020/10/30/jQuery-input%E8%BE%93%E5%85%A5%E9%AA%8C%E8%AF%81/"/>
+    <id>https://miaoda.fun/2020/10/30/jQuery-input%E8%BE%93%E5%85%A5%E9%AA%8C%E8%AF%81/</id>
+    <published>2020-10-30T07:00:00.000Z</published>
+    <updated>2022-02-22T02:50:37.673Z</updated>
+    
+    
+    <summary type="html">jQuery-input输入验证</summary>
+    
+    
+    
+    <category term="技术" scheme="https://miaoda.fun/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="前端" scheme="https://miaoda.fun/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+    <category term="技术" scheme="https://miaoda.fun/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo-Theme-Sakura</title>
+    <link href="https://miaoda.fun/2020/08/12/Hexo-Theme-Sakura/"/>
+    <id>https://miaoda.fun/2020/08/12/Hexo-Theme-Sakura/</id>
+    <published>2020-08-12T14:16:01.000Z</published>
+    <updated>2022-02-22T02:50:37.673Z</updated>
+    
+    
+    <summary type="html">hexo-sakura主题使用教程</summary>
+    
+    
+    
+    <category term="技术" scheme="https://miaoda.fun/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="web" scheme="https://miaoda.fun/tags/web/"/>
+    
+    <category term="悦读" scheme="https://miaoda.fun/tags/%E6%82%A6%E8%AF%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>获取质数算法：埃拉托斯特尼筛法</title>
+    <link href="https://miaoda.fun/2020/08/11/%E8%8E%B7%E5%8F%96%E8%B4%A8%E6%95%B0%E7%AE%97%E6%B3%95%EF%BC%9A%E5%9F%83%E6%8B%89%E6%89%98%E6%96%AF%E7%89%B9%E5%B0%BC%E7%AD%9B%E6%B3%95/"/>
+    <id>https://miaoda.fun/2020/08/11/%E8%8E%B7%E5%8F%96%E8%B4%A8%E6%95%B0%E7%AE%97%E6%B3%95%EF%BC%9A%E5%9F%83%E6%8B%89%E6%89%98%E6%96%AF%E7%89%B9%E5%B0%BC%E7%AD%9B%E6%B3%95/</id>
+    <published>2020-08-11T07:00:00.000Z</published>
+    <updated>2022-02-22T02:50:37.674Z</updated>
+    
+    
+    <summary type="html">获取质数算法：埃拉托斯特尼筛法</summary>
+    
+    
+    
+    <category term="技术" scheme="https://miaoda.fun/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="技术" scheme="https://miaoda.fun/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+    <category term="算法" scheme="https://miaoda.fun/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+</feed>

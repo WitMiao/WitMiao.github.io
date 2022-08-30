@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  
+  <title itemprop="name">angular调用百度地图api踩坑记录 | miaoda</title>
+  
+    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/WitMiao/blogAssets@0.1.0/img/custom/favicon.ico">
+  
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC" media="all">
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+  <link rel="stylesheet" id="saukra_css-css" href="/css/style.css" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/lib.min.css" media="all">
+  <link rel="stylesheet" href="/css/font.css" media="all">
+  <link rel="stylesheet" href="/css/insight.css" media="all">
+  <link rel="stylesheet" href="/css/jquery.fancybox.min.css" media="all">
+  <link rel="stylesheet" href="/css/zoom.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<!--   <link rel="stylesheet" id="saukra_css-css" href="https://2heng.xin/wp-content/cache/autoptimize/css/autoptimize_ad42a61f4c7d4bdd9f91afcff6b5dda5.css
+" type="text/css" media="all"> -->
+  <script>
+  /*Initial Variables*/
+  var mashiro_option = new Object();
+  var mashiro_global = new Object();
+  mashiro_option.NProgressON = true;
+  /* 
+   * 邮箱信息之类的东西可以填在这里，这些js变量基本都作用于sakura-app.js
+   * 这样的设置仅是为了方便在基于PHP开发的主题中设置js变量，既然移植到了Node上，我想或许可以精简这一逻辑吧
+   */
+  mashiro_option.email_domain = "";
+  mashiro_option.email_name = "";
+  mashiro_option.cookie_version_control = "";
+  mashiro_option.qzone_autocomplete = false;
+  mashiro_option.site_name = "苗大miaoda";
+  mashiro_option.author_name = "miaoda";
+  mashiro_option.site_url = "https://miaoda.fun/";
+  mashiro_option.v_appId = "QcvXSbmzMnoQqTzJPzdPnGGc-gzGzoHsz";
+  mashiro_option.v_appKey = "cFdSUREMDewBegMTetWHHaLs";
+  mashiro_option.mathjax = "0";
+  mashiro_option.qq_api_url = "https://api.mashiro.top/qqinfo/"; 
+  mashiro_option.qq_avatar_api_url = "https://api.mashiro.top/qqinfo/";
+
+  // mashiro_option.jsdelivr_css_src = "https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/css/lib.min.css";
+  // mashiro_option.float_player_on = true;
+
+  /*End of Initial Variables*/
+  </script>
+  <script type="text/javascript">
+  var bg = "https://cdn.jsdelivr.net/gh/WitMiao/blogAssets@0.1.0/img/cover/001.jpg,https://cdn.jsdelivr.net/gh/WitMiao/blogAssets@0.1.0/img/cover/002.jpg,https://cdn.jsdelivr.net/gh/WitMiao/blogAssets@0.1.0/img/cover/003.jpg".split(",");
+  var bgindex = Math.floor(Math.random()*bg.length);
+  if (!!window.ActiveXObject || "ActiveXObject" in window) { //is IE?
+    alert('朋友，IE浏览器未适配哦~');
+  }
+  </script>
+  <style type="text/css">
+  .hljs-ln{border-collapse:collapse}.hljs-ln td{padding:0}.hljs-ln-n:before{content:attr(data-line-number)}
+  </style>
+  <style type="text/css">.site-top .lower nav{display:block !important;}.author-profile i,.post-like a,.post-share .show-share,.sub-text,.we-info a,span.sitename,.post-more i:hover,#pagination a:hover,.post-content a:hover,.float-content i:hover{color:#FE9600}.feature i,.download,.navigator i:hover,.links ul li:before,.ar-time i,span.ar-circle,.object,.comment .comment-reply-link,.siren-checkbox-radio:checked + .siren-checkbox-radioInput:after{background:#FE9600}::-webkit-scrollbar-thumb{background:#FE9600}.download,.navigator i:hover,.link-title,.links ul li:hover,#pagination a:hover,.comment-respond input[type='submit']:hover{border-color:#FE9600}.entry-content a:hover,.site-info a:hover,.comment h4 a,#comments-navi a.prev,#comments-navi a.next,.comment h4 a:hover,.site-top ul li a:hover,.entry-title a:hover,#archives-temp h3,span.page-numbers.current,.sorry li a:hover,.site-title a:hover,i.iconfont.js-toggle-search.iconsearch:hover,.comment-respond input[type='submit']:hover{color:#FE9600}.comments .comments-main{display:block !important;}.comments .comments-hidden{display:none !important;}background-position:center center;background-attachment:inherit;}
+  </style>
+<meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="/atom.xml" title="miaoda" type="application/atom+xml">
+</head>
+
+<body class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
+  <div class="scrollbar" id="bar">
+  </div>
+  <a href="#" class="cd-top faa-float animated"></a>
+  <section id="main-container">
+    <div class="headertop filter-dot">
+  <div id="banner_wave_1"></div>
+  <div id="banner_wave_2"></div>
+  <figure id="centerbg" class="centerbg">
+    <div class="focusinfo no-select">
+      <div class="header-tou">
+        <a href="https://miaoda.fun/">
+          <img src="https://cdn.jsdelivr.net/gh/WitMiao/blogAssets@0.1.0/img/custom/avatar.jpg">
+        </a>
+      </div>
+      <div class="header-info">
+        <p>我不是天生的王者，但我骨子里流动着不让我低头的血液!</p>
+        <div class="top-social_v2">
+          <li id="bg-pre">
+            <img class="flipx" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+          
+            
+              
+                <li>
+                  <a href="http://github.com/WitMiao" target="_blank" class="social-github" title="github">
+                    <img src="https://cdn.jsdelivr.net/gh/WitMiao/blogAssets@0.1.0/img/social/github.png">
+                  </a>
+                </li>
+              
+            
+          
+          <li id="bg-next">
+            <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+        </div>
+      </div>
+    </div>
+  </figure>
+  <div id="video-container" style="">
+    <video style="object-fit: fill" id="bgvideo" class="video" video-name="" src="" width="auto" preload="auto">
+    </video>
+    <div id="video-btn" class="loadvideo videolive">
+    </div>
+    <div id="video-add">
+    </div>
+    <div class="video-stu">
+    </div>
+  </div>
+  <div class="headertop-down faa-float animated" onclick="headertop_down()">
+    <span>
+      <i class="fa fa-chevron-down" aria-hidden="true">
+      </i>
+    </span>
+  </div>
+</div>
+    <div id="page" class="site wrapper">
+      <header class="site-header no-select gizle sabit" role="banner">
+  <div class="site-top">
+    <div class="site-branding">
+      <span class="site-title">
+        <span class="logolink moe-mashiro">
+          <a href="/">
+            <span class="sakurasono">苗大</span>
+            <span class="shironeko">miaoda</span>
+          </a>
+        </span>
+      </span>
+    </div>
+    <div class="searchbox search-form-submit">
+      <i class="iconfont js-toggle-search iconsearch icon-search">
+      </i>
+    </div>
+    <div id="show-nav" class="showNav mobile-fit">
+      <div class="line line1">
+      </div>
+      <div class="line line2">
+      </div>
+      <div class="line line3">
+      </div>
+    </div>
+    <div class="lower-cantiner">
+      <div class="lower">
+        <nav class="mobile-fit-control hide">
+          <ul id="menu-new" class="menu">
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+                    首页
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+                    归档
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/categories/%E6%8A%80%E6%9C%AF/">
+                          <i class="fa fa-code" aria-hidden="true"></i>
+                          技术
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/%E7%94%9F%E6%B4%BB/">
+                          <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                          生活
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/%E8%B5%84%E6%BA%90/">
+                          <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                          资源
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/%E9%9A%8F%E6%83%B3/">
+                          <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                          随想
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/%E8%BD%AC%E8%BD%BD/">
+                          <i class="fa fa-book" aria-hidden="true"></i>
+                          转载
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="javascript:;">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+                    清单
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/tags/%E6%82%A6%E8%AF%BB/">
+                          <i class="fa fa-th-list faa-bounce" aria-hidden="true"></i>
+                          书单
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/bangumi/">
+                          <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                          番组
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/music/">
+                          <i class="fa fa-headphones" aria-hidden="true"></i>
+                          歌单
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/tags/%E5%9B%BE%E9%9B%86/">
+                          <i class="fa fa-photo" aria-hidden="true"></i>
+                          图集
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="/comment/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+                    留言板
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/links/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-link faa-shake" aria-hidden="true"></i>
+                    友人帐
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/donate/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-heart faa-pulse" aria-hidden="true"></i>
+                    赞赏
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+                    关于
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/about/">
+                          <i class="fa fa-meetup" aria-hidden="true"></i>
+                          我？
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/theme-sakura/">
+                          <i class="fa iconfont icon-sakura" aria-hidden="true"></i>
+                          主题
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/lab/">
+                          <i class="fa fa-cogs" aria-hidden="true"></i>
+                          Lab
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="/client/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-android faa-vertical" aria-hidden="true"></i>
+                    客户端
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/atom.xml">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-rss faa-pulse" aria-hidden="true"></i>
+                    RSS
+                  </span>
+                </a>
+                
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<div class="pattern-center-blank"></div>
+
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+          <header class="entry-header">
+            <h1 class="entry-title">angular调用百度地图api踩坑记录</h1>
+            <p class="entry-census">苗大&nbsp;·&nbsp;2021-8-16&nbsp;·&nbsp;<span id="busuanzi_value_page_pv"></span>次阅读</p></p>
+
+            <hr>
+          </header>
+        
+        <div class="entry-content">
+          <h2 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h2><p><a href="/2021/08/16/angular%E8%B0%83%E7%94%A8%E7%99%BE%E5%BA%A6%E5%9C%B0%E5%9B%BEapi%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/#skipToHere">跳过踩坑碎碎念，直接看使用方法</a></p>
+<p>根据<a target="_blank" rel="noopener" href="https://lbsyun.baidu.com/jsdemo.htm#c2_3">百度地图api示例</a>，调用地图需要先引入js:</p>
+<pre><code class="html">&lt;script type=&quot;text/javascript&quot; src=&quot;//api.map.baidu.com/api?v=2.0&amp;ak=您的密钥&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>之后才能进行各种api调用，但angular直接调用互联网的js，需要利用angular-cli.json的script属性或者直接在index.html中引入js，这种全局调用的方式并不是笔者想要的。</p>
+<p>于是就去搜索了各种angular异步调用js方法，在StackOverFlow一篇问答：<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/34489916/how-to-load-external-scripts-dynamically-in-angular/53026833#53026833">angular如何动态加载外部js</a> 里有介绍说用system.js或者scriptjs工具来加载，笔者尝试了scriptjs加载的方法，发现运行时提示警告：</p>
+<pre><code class="cmd">depends on &#39;scriptjs&#39;. CommonJS or AMD dependencies can  cause optimization bailouts.
+</code></pre>
+<p>StackOverFlow上类似问题的解释是：When you use a dependency that is packaged with CommonJS, it can result in larger slower applications<br>看来这种方式也不是很好，会导致打包后的程序更慢更大，于是笔者就想到直接找别人写好的轮子岂不是更快，最后在GitHub上找到<a target="_blank" rel="noopener" href="https://github.com/cipchk/angular-baidu-maps">angular-baidu-maps</a>，看到下面调用代码大喜：</p>
+<pre><code class="typescript">import &#123; AbmModule &#125; from &#39;angular-baidu-maps&#39;;
+
+@NgModule(&#123;
+  imports: [
+    BrowserModule,
+    AbmModule.forRoot(&#123;
+      apiKey: &#39;&#39; // app key为必选项
+    &#125;)
+  ],
+  declarations: [AppComponent],
+  bootstrap: [AppComponent]
+&#125;)
+export class AppModule &#123; &#125;
+</code></pre>
+<p>看起来很好用，这就开整！</p>
+<h2 id="安装-amp-升级Angular12踩坑"><a href="#安装-amp-升级Angular12踩坑" class="headerlink" title="安装&amp;升级Angular12踩坑"></a>安装&amp;升级Angular12踩坑</h2><p>根据上面GitHub的README.md可以很快安装成功，但当笔者调用时候却报了提示angular版本不兼容，查了下发现，插件是angular12版本，而项目用的却是angular11，咨询了项目负责人后获得了升级许可，升级完终于可以调用成功了，但却发现之前PrimeNG的css样式都失效了，去官网看了下才发现原来，PrimeNG 12之后css改为<a target="_blank" rel="noopener" href="https://www.primefaces.org/primeflex/">primeflex3.0</a>，于是又是一番折腾，终于把样式改正常了，虽然运行终端log里一直有大量的下面这种警告：</p>
+<pre><code class="cmd">assets/css/style-blessed.scss - Warning: Css Minimizer Plugin:  &gt; assets/css/style-blessed.scss:2700:1: warning: Expected identifier but 
+found &quot;.&quot;
+    2700 │   .social-icon &#123;
+         ╵   ^
+</code></pre>
+<p><span id="skipToHere"></span><br>查了下应该是css压缩转换相关的问题，但是试了各种方法依然没能解决，虽然不影响运行和打包，但还是挺烦人的，如果有大佬有好的解决办法，希望可以留言告诉笔者，万分感谢！</p>
+<h2 id="正式使用"><a href="#正式使用" class="headerlink" title="正式使用"></a>正式使用</h2><h3 id="需求："><a href="#需求：" class="headerlink" title="需求："></a>需求：</h3><ol>
+<li>添加大量自定义标签；</li>
+<li>点击自定义标签显示信息窗；</li>
+<li>获取用户定位并显示；</li>
+</ol>
+<h3 id="添加大量自定义标签"><a href="#添加大量自定义标签" class="headerlink" title="添加大量自定义标签"></a>添加大量自定义标签</h3><p>需要使用到<a target="_blank" rel="noopener" href="http://api.map.baidu.com/library/MarkerClusterer/1.2/docs/symbols/BMapLib.MarkerClusterer.html">BMapLib.MarkerClusterer类</a>，这个类是另外加载的，所以我们要在app.module.ts引用时在AbmModule的libraries里添加上：</p>
+<pre><code class="ts">//baidu map
+AbmModule.forRoot(&#123;
+  apiKey: &#39;你的apiKey&#39;,
+  libraries: [
+    &#39;//api.map.baidu.com/library/TextIconOverlay/1.2/src/TextIconOverlay_min.js&#39;,
+    &#39;//api.map.baidu.com/library/MarkerClusterer/1.2/src/MarkerClusterer_min.js&#39;,
+  ],
+&#125;),
+</code></pre>
+<p>接着在调用api的组件里添加定义：</p>
+<pre><code class="ts">declare const BMapLib: any;
+</code></pre>
+<p>之后如果你之前已经写好标签数组(markers)就可以像这样直接调用了：</p>
+<pre><code class="ts">new BMapLib.MarkerClusterer(map, &#123;markers: markers&#125;)
+</code></pre>
+<p>我们这里先从创建自定义标签开始：</p>
+<pre><code class="ts">// 创建一个包含经纬度的点
+const point = new BMap.Point(lng, lat);
+// 创建一个自定义图标，包含图片路径和一个包含宽高的Size对象
+const myIcon = new BMap.Icon(
+  &#39;/img/map/marker_icon.png&#39;,
+  new BMap.Size(iconWidth, iconHeight)
+);
+// 创建标注
+const marker = new BMap.Marker(point, &#123; icon: myIcon &#125;);
+// 设置标注标题
+marker.setTitle(name);
+</code></pre>
+<p>于是一个自定义标注完成了，之后只要将标注用MarkerClusterer聚合：</p>
+<pre><code class="ts">// 写在循环内，将所有标注放到一个数组里
+markers.push(marker)
+// 标注导入聚合
+const markerClusterer = new BMapLib.MarkerClusterer(map, &#123;markers: markers&#125;)
+// 聚合点样式（和标注类似，多了一个聚合后文字的颜色）
+const polymerizationStyles = [
+  &#123;
+    url: &#39;/img/map/cluster_icon.png&#39;,
+    size: new BMap.Size(clusterIconWidth, clusterIconHeight),
+    textColor: #FFF,
+  &#125;,
+];
+// 设置超过几个点开始聚合
+markerClusterer.setMinClusterSize(2);
+// 调用样式
+markerClusterer.setStyles(polymerizationStyles);
+</code></pre>
+<p>到这里，信息窗就完成了，下面开始获取用户定位</p>
+<h3 id="点击自定义标签显示信息窗"><a href="#点击自定义标签显示信息窗" class="headerlink" title="点击自定义标签显示信息窗"></a>点击自定义标签显示信息窗</h3><p>信息框添加本身比较简单，可以用js原始的添加删除事件方法，我这里为了统一管理事件用了 <a target="_blank" rel="noopener" href="https://cn.rx.js.org/">rxjs</a>：</p>
+<pre><code class="ts">// 引入rxjs相关函数
+import &#123; Subscription, fromEvent, merge &#125; from &#39;rxjs&#39;;
+// 定义一个订阅器
+subscription: Subscription;
+</code></pre>
+<p>下面代码是写在创建marker的循环里的：</p>
+<pre><code class="ts">// 信息框内容
+const info_html = `&lt;div&gt;&lt;span&gt;我是信息窗信息&lt;/span&gt;&lt;/div&gt;`;
+// 点击标注显示信息窗（）
+const markerEvent = fromEvent(marker, &#39;click&#39;).pipe(
+  tap((e) =&gt; marker.openInfoWindow(new BMap.InfoWindow(info_html)))
+);
+// 事件和marker一样用一个数组聚合
+events.push(markerEvent);
+</code></pre>
+<p>之后在循环外面将事件聚合和发布：</p>
+<pre><code class="ts">// merge聚合全部点击事件, 再通一发布
+this.subscription = merge(...events).subscribe();
+</code></pre>
+<p>这样我们就能在ngOnDestroy()里轻松销毁所有事件：</p>
+<pre><code class="ts">ngOnDestroy(): void &#123;
+  // 销毁事件
+  this.subscription.unsubscribe();
+&#125;
+</code></pre>
+<p>到这里，大量自定义标签的添加就完成了，下面开始添加信息窗</p>
+<h3 id="获取用户定位并显示"><a href="#获取用户定位并显示" class="headerlink" title="获取用户定位并显示"></a>获取用户定位并显示</h3><p>获取用户定位我们需要用到BMap的Geolocation方法：</p>
+<pre><code class="ts">// 定位所需的成功状态
+declare const BMAP_STATUS_SUCCESS: any;
+
+// 获取当前位置经纬度
+const geolocation = new BMap.Geolocation();
+// 为了在下面匿名函数内调用到组件对象
+const _this = this;
+geolocation.getCurrentPosition(function (r) &#123;
+  if (this.getStatus() == BMAP_STATUS_SUCCESS) &#123;
+    console.log(&#39;您的位置：&#39; + r.point.lng + &#39;,&#39; + r.point.lat);
+    //自定义定位标识（和marker一样）
+    const myCurIcon = new BMap.Icon(
+      &#39;/img/map/cluster_icon.png&#39;,
+      new BMap.Size(curIconWidth, curIconHeight)
+    );
+    // 创建当前位置标注
+    const curMarker = new BMap.Marker(r.point, &#123; icon: myCurIcon &#125;);
+    curMarker.setTitle(curIconTitle);
+    //将当前位置标注添加到地图
+    map.addOverlay(curMarker);
+    // 这里的curLat和curLng是需要输出到父组件的
+    // @Output() curLat = new EventEmitter&lt;string&gt;();
+    _this.curLat.emit(r.point.lat);
+    _this.curLng.emit(r.point.lng);
+  &#125; else &#123;
+    console.log(&#39;failed&#39; + this.getStatus());
+    alert(&#39;获取当前位置失败，请开启定位权限！&#39;);
+  &#125;
+&#125;);
+</code></pre>
+<p>这样就能拿到用户的定位并显示了，父组件拿到定位后也可以进行调用百度计算路径的网址：</p>
+<pre><code class="html">/**
+ * 参数说明：
+ * mode：出行方式，这里用的是开车 - driving
+ * region：地域，这里的是西安（似乎随便填一个就行
+ * origin：起始地经纬度，这里传入了子组件传来的经纬度
+ * destination：终点经纬度
+ */
+&lt;a
+  [href]=&quot;&#39;http://api.map.baidu.com/direction?mode=driving&amp;output=html&amp;region=%E8%A5%BF%E5%AE%89%E2%80%8B&amp;origin=&#39;
+   + curLat + &#39;,&#39; + curLng 
+   + &#39;&amp;destination=&#39; 
+   + lat + &#39;,&#39; + lng&quot;
+  target=&quot;_blank&quot;
+&gt;
+</code></pre>
+<h3 id="2021-8-27-更新-获取当前位置经纬度方法2"><a href="#2021-8-27-更新-获取当前位置经纬度方法2" class="headerlink" title="2021/8/27 更新 获取当前位置经纬度方法2"></a>2021/8/27 更新 获取当前位置经纬度方法2</h3><p>由于需求增加，需要在加载百度页面的其他页面也要获取到当前位置经纬度，于是搜寻了下js原生的获取方法：</p>
+<pre><code class="ts">ngOnInit() &#123;
+if (navigator.geolocation) &#123;
+      navigator.geolocation.getCurrentPosition((p) =&gt; &#123;
+        const &#123; latitude, longitude &#125; = p.coords;
+        console.log(&#39;latitude, longitude: &#39; , latitude, longitude);
+      &#125;);
+    &#125;
+&#125;
+</code></pre>
+<p>这个方法简单，而且可以直接在初始化时候调用，不用等待百度地图相关api的启用。</p>
+<p>参考资料&amp;鸣谢：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference.html#a0b0">百度地图api</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/cipchk/angular-baidu-maps">angular-baidu-maps</a></li>
+<li><a target="_blank" rel="noopener" href="https://cn.rx.js.org/">rxjs</a></li>
+</ul>
+
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/WitMiao/blogAssets@0.1.0/img/custom/donate/AliPayQR.jpg"></li>
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/WitMiao/blogAssets@0.1.0/img/custom/donate/WeChanQR.jpg"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+          
+            <div class="post-nepre half previous">
+          
+            <a href="/2021/08/27/angular%20%E9%A1%B5%E9%9D%A2%E5%86%85%E8%B7%B3%E8%BD%AC(%E9%94%9A%E7%82%B9%E5%AE%9A%E4%BD%8D%E8%A2%AB%E9%A1%B6%E9%83%A8%E5%9B%BA%E5%AE%9A%E5%AF%BC%E8%88%AA%E6%A0%8F%E9%81%AE%E4%BD%8F)%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
+              </div>
+              <span class="label">
+              Previous Post</span>
+              <div class="info">
+                <h3>
+                angular 页面内跳转(锚点定位被顶部固定导航栏遮住)踩坑记录</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+        
+          
+            <div class="post-nepre half next">
+          
+            <a href="/2020/10/30/jQuery-input%E8%BE%93%E5%85%A5%E9%AA%8C%E8%AF%81/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                jQuery-input输入验证</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
+      
+<div id="vcomments"></div>
+<script>
+  window.onload = function(){
+      var valine = new Valine();
+      valine.init({
+        el: '#vcomments',
+        appId: "QcvXSbmzMnoQqTzJPzdPnGGc-gzGzoHsz",
+        appKey: "cFdSUREMDewBegMTetWHHaLs",
+        path: window.location.pathname,
+        placeholder: "想说些什么呢 ..."
+      })
+  }
+</script>
+
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+          <a href="miaoda.fun" class="profile gravatar"><img src="https://cdn.jsdelivr.net/gh/WitMiao/blogAssets/img/custom/avatar.jpg" itemprop="image" alt="苗大" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="miaoda.fun" itemprop="url" rel="author">苗大</a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i>我不是天生的王者，但我骨子里流动着不让我低头的血液!</p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
+</div>
+
+
+
+    </div>    
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            // PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+    <!-- <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 miaoda<br>
+      powered_by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer> -->
+<footer id="colophon" class="site-footer" role="contentinfo">
+  <div class="site-info">
+    <div class="footertext">
+      <div class="img-preload">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/wordpress-rotating-ball-o.svg">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/disqus-preloader.svg">
+      </div>
+    </div>
+    <div class="footer-device">
+      <p style="font-family: 'Ubuntu', sans-serif;">
+        <span style="color: #666;">
+          &copy 2020~2021 <a style="color: #666;;text-decoration: underline dotted rgba(0, 0, 0, .1);" href="https://miaoda.fun/about/">MiaoDa</a> All Rights Reserved
+        </span>
+      </p>
+      <p style="font-family: 'Ubuntu', sans-serif;">
+        <span style="color: #b9b9b9;">
+          Powered by Hexo
+          <i class="iconfont icon-sakura rotating" style="color: #ffc0cb;display:inline-block"></i>
+          Theme
+          <a href="https://github.com/honjun/hexo-theme-sakura" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">
+            Sakura</a>
+          </a>
+        </span>
+      </p>
+    </div>
+  </div><!-- .site-info -->
+</footer>
+
+
+
+<!-- <script src="/js/tocbot.js"></script> -->
+<script type="text/javascript" src="/js/lib.min.js"></script>
+<script type="text/javascript" src="/js/miao-engine.js" type="module" async="true"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/InsightSearch.js"></script>
+<script type="text/javascript" src="/js/jquery.fancybox.min.js"></script>
+<script type="text/javascript" src="/js/zoom.min.js"></script>
+<script type="text/javascript" src="/js/sakura-app.js"></script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script type="text/javascript" src="/js/Valine.min.js"></script>
+<script src="/js/botui.js"></script>
+<!-- 不蒜子 网页计数器 -->
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script> -->
+<script type="text/javascript">
+  /* <![CDATA[ */
+  if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+    var Poi = {
+      "pjax": "1",
+      "movies": {
+        "url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2",
+        "name": "Unbroken.mp4",
+        "live": "close"
+      },
+      "windowheight": "fixed",
+      "codelamp": "close",
+      "ajaxurl": "",
+      "order": "asc",
+      "formpostion": "bottom"
+    };
+  } else {
+    var Poi = {
+      "pjax": "1",
+      "movies": {
+        "url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2",
+        "name": "Unbroken.mp4",
+        "live": "open"
+      },
+      "windowheight": "auto",
+      "codelamp": "close",
+      "ajaxurl": "",
+      "order": "asc",
+      "formpostion": "bottom"
+    };
+  }
+  /* ]]> */
+</script>
+<script>
+  $(document).ready(function() {
+    if ($(".toc").length > 0 && document.body.clientWidth > 1200) {
+      if ($(".pattern-center").length > 0) { //有图的情况
+        tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -400,
+          scrollSmoothOffset: -85
+        });
+      } else {
+        tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -85,
+          scrollSmoothOffset: -85
+        });
+      }
+      var offsetTop = $('.toc').offset().top - 95;
+      window.onscroll = function() {
+        var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+        if (scrollTop >= offsetTop) {
+          $('.toc').addClass('toc-fixed');
+        } else {
+          $('.toc').removeClass('toc-fixed');
+        }
+      }
+    }
+  });
+</script>
+    <div class="openNav no-select" style="height: 50px;">
+      <div class="iconflat no-select" style="width: 50px; height: 50px;">
+        <div class="icon"></div>
+      </div>
+      <div class="site-branding search-form-submit">
+        <i class="iconfont js-toggle-search iconsearch icon-search"></i>
+      </div>
+    </div>
+  </section>
+  <div id="mo-nav" class="">
+  <div class="m-avatar">
+    <img src="https://cdn.jsdelivr.net/gh/WitMiao/blogAssets@0.1.0/img/custom/avatar.jpg">
+  </div>
+  <p style="text-align: center; color: #333; font-weight: 900; font-family: 'Ubuntu', sans-serif; letter-spacing: 1.5px">苗大miaoda</p>
+  <p style="text-align: center; word-spacing: 20px;">
+    
+      
+        <a href="http://github.com/WitMiao" class="fa fa-github" target="_blank" style="color: #333; margin-left:20px"></a>
+      
+    
+  </p>
+  <ul id="menu-new-1" class="menu">
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+            首页
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/archives">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+            归档
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/categories/%E6%8A%80%E6%9C%AF/">
+                  <i class="fa fa-code" aria-hidden="true"></i>
+                  技术
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/%E7%94%9F%E6%B4%BB/">
+                  <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                  生活
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/%E8%B5%84%E6%BA%90/">
+                  <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                  资源
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/%E9%9A%8F%E6%83%B3/">
+                  <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                  随想
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/%E8%BD%AC%E8%BD%BD/">
+                  <i class="fa fa-book" aria-hidden="true"></i>
+                  转载
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="javascript:;">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+            清单
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/tags/%E6%82%A6%E8%AF%BB/">
+                  <i class="fa fa-th-list faa-bounce" aria-hidden="true"></i>
+                  书单
+                </a>
+              </li>
+            
+              <li>
+                <a href="/bangumi/">
+                  <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                  番组
+                </a>
+              </li>
+            
+              <li>
+                <a href="/music/">
+                  <i class="fa fa-headphones" aria-hidden="true"></i>
+                  歌单
+                </a>
+              </li>
+            
+              <li>
+                <a href="/tags/%E5%9B%BE%E9%9B%86/">
+                  <i class="fa fa-photo" aria-hidden="true"></i>
+                  图集
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/comment/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+            留言板
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/links/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-link faa-shake" aria-hidden="true"></i>
+            友人帐
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/donate/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-heart faa-pulse" aria-hidden="true"></i>
+            赞赏
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+            关于
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/about/">
+                  <i class="fa fa-meetup" aria-hidden="true"></i>
+                  我？
+                </a>
+              </li>
+            
+              <li>
+                <a href="/theme-sakura/">
+                  <i class="fa iconfont icon-sakura" aria-hidden="true"></i>
+                  主题
+                </a>
+              </li>
+            
+              <li>
+                <a href="/lab/">
+                  <i class="fa fa-cogs" aria-hidden="true"></i>
+                  Lab
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/client/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-android faa-vertical" aria-hidden="true"></i>
+            客户端
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/atom.xml">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-rss faa-pulse" aria-hidden="true"></i>
+            RSS
+          </span>
+        </a>
+        
+      </li>
+    
+  </ul>
+  <p style="text-align: center; font-size: 13px; color: #b9b9b9;">&copy 2019 hexo-sakura</p>
+</div>
+<button onclick="topFunction()" class="mobile-cd-top" id="moblieGoTop" title="Go to top" style="display: none;"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+<style>
+  .aplayer .aplayer-lrc {
+    height: 35px;
+  }
+  .aplayer .aplayer-lrc p{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px !important;
+  }
+  .aplayer .aplayer-lrc p.aplayer-lrc-current{
+    color: #FF1493;
+  }
+  .aplayer.aplayer-narrow .aplayer-body{
+    left: -66px !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-lrc {
+    display: none;
+  }
+  .aplayer .aplayer-lrc.aplayer-lrc-hide {
+      display:none !important;
+  }
+  .aplayer.aplayer-fixed .lrc-show {
+    display: block;
+    background: rgba(255, 255, 255, 0.8);
+  }
+</style>
+<meting-js
+
+    id="70991620"
+
+    server="netease"
+
+    type="playlist"
+
+    fixed="true"
+
+    autoplay="false"
+
+    loop="all"
+
+    order="random"
+
+    preload="none"
+
+    volume="0.3"
+
+    mutex="true"
+
+</meting-js>
+<script>
+  $(function(){
+    $('body').on('click', '.aplayer', function(){
+      if($('.aplayer-button').hasClass('aplayer-play')) {
+        $('.aplayer-lrc').removeClass('lrc-show');
+      } else {
+        $('.aplayer-lrc').addClass('lrc-show');
+      }
+    })
+  });
+</script>
+</body>
+<!-- 背景效果 -->
+<!-- 漂浮彩带，点击可变换 -->
+<!-- <script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/piao.js"></script>    -->
+
+ <!-- 可随鼠标滚动并吸附的线条 -->
+<script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/canvas-nest.min.js"></script> 
+
+<!-- 漂浮物效果 -->
+<!-- 樱花飘落 -->
+<!-- <script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/sakura.js"></script>  -->
+ <!-- 雪花飘落 -->
+ <!--<script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/snow.js"></script>  -->
+
+<!-- 看板娘 -->
+<script src="https://cdn.jsdelivr.net/gh/WitMiao/live2d-widget@latest/autoload.js"></script>
+</html>

@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  
+  <title itemprop="name">miaoda</title>
+  
+    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/WitMiao/blogAssets@0.1.0/img/custom/favicon.ico">
+  
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC" media="all">
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+  <link rel="stylesheet" id="saukra_css-css" href="/css/style.css" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/lib.min.css" media="all">
+  <link rel="stylesheet" href="/css/font.css" media="all">
+  <link rel="stylesheet" href="/css/insight.css" media="all">
+  <link rel="stylesheet" href="/css/jquery.fancybox.min.css" media="all">
+  <link rel="stylesheet" href="/css/zoom.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<!--   <link rel="stylesheet" id="saukra_css-css" href="https://2heng.xin/wp-content/cache/autoptimize/css/autoptimize_ad42a61f4c7d4bdd9f91afcff6b5dda5.css
+" type="text/css" media="all"> -->
+  <script>
+  /*Initial Variables*/
+  var mashiro_option = new Object();
+  var mashiro_global = new Object();
+  mashiro_option.NProgressON = true;
+  /* 
+   * 邮箱信息之类的东西可以填在这里，这些js变量基本都作用于sakura-app.js
+   * 这样的设置仅是为了方便在基于PHP开发的主题中设置js变量，既然移植到了Node上，我想或许可以精简这一逻辑吧
+   */
+  mashiro_option.email_domain = "";
+  mashiro_option.email_name = "";
+  mashiro_option.cookie_version_control = "";
+  mashiro_option.qzone_autocomplete = false;
+  mashiro_option.site_name = "苗大miaoda";
+  mashiro_option.author_name = "miaoda";
+  mashiro_option.site_url = "https://miaoda.fun/";
+  mashiro_option.v_appId = "QcvXSbmzMnoQqTzJPzdPnGGc-gzGzoHsz";
+  mashiro_option.v_appKey = "cFdSUREMDewBegMTetWHHaLs";
+  mashiro_option.mathjax = "0";
+  mashiro_option.qq_api_url = "https://api.mashiro.top/qqinfo/"; 
+  mashiro_option.qq_avatar_api_url = "https://api.mashiro.top/qqinfo/";
+
+  // mashiro_option.jsdelivr_css_src = "https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/css/lib.min.css";
+  // mashiro_option.float_player_on = true;
+
+  /*End of Initial Variables*/
+  </script>
+  <script type="text/javascript">
+  var bg = "https://cdn.jsdelivr.net/gh/WitMiao/blogAssets@0.1.0/img/cover/001.jpg,https://cdn.jsdelivr.net/gh/WitMiao/blogAssets@0.1.0/img/cover/002.jpg,https://cdn.jsdelivr.net/gh/WitMiao/blogAssets@0.1.0/img/cover/003.jpg".split(",");
+  var bgindex = Math.floor(Math.random()*bg.length);
+  if (!!window.ActiveXObject || "ActiveXObject" in window) { //is IE?
+    alert('朋友，IE浏览器未适配哦~');
+  }
+  </script>
+  <style type="text/css">
+  .hljs-ln{border-collapse:collapse}.hljs-ln td{padding:0}.hljs-ln-n:before{content:attr(data-line-number)}
+  </style>
+  <style type="text/css">.site-top .lower nav{display:block !important;}.author-profile i,.post-like a,.post-share .show-share,.sub-text,.we-info a,span.sitename,.post-more i:hover,#pagination a:hover,.post-content a:hover,.float-content i:hover{color:#FE9600}.feature i,.download,.navigator i:hover,.links ul li:before,.ar-time i,span.ar-circle,.object,.comment .comment-reply-link,.siren-checkbox-radio:checked + .siren-checkbox-radioInput:after{background:#FE9600}::-webkit-scrollbar-thumb{background:#FE9600}.download,.navigator i:hover,.link-title,.links ul li:hover,#pagination a:hover,.comment-respond input[type='submit']:hover{border-color:#FE9600}.entry-content a:hover,.site-info a:hover,.comment h4 a,#comments-navi a.prev,#comments-navi a.next,.comment h4 a:hover,.site-top ul li a:hover,.entry-title a:hover,#archives-temp h3,span.page-numbers.current,.sorry li a:hover,.site-title a:hover,i.iconfont.js-toggle-search.iconsearch:hover,.comment-respond input[type='submit']:hover{color:#FE9600}.comments .comments-main{display:block !important;}.comments .comments-hidden{display:none !important;}background-position:center center;background-attachment:inherit;}
+  </style>
+<meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="/atom.xml" title="miaoda" type="application/atom+xml">
+</head>
+
+<body class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
+  <div class="scrollbar" id="bar">
+  </div>
+  <a href="#" class="cd-top faa-float animated"></a>
+  <section id="main-container">
+    <div class="headertop filter-dot">
+  <div id="banner_wave_1"></div>
+  <div id="banner_wave_2"></div>
+  <figure id="centerbg" class="centerbg">
+    <div class="focusinfo no-select">
+      <div class="header-tou">
+        <a href="https://miaoda.fun/">
+          <img src="https://cdn.jsdelivr.net/gh/WitMiao/blogAssets@0.1.0/img/custom/avatar.jpg">
+        </a>
+      </div>
+      <div class="header-info">
+        <p>我不是天生的王者，但我骨子里流动着不让我低头的血液!</p>
+        <div class="top-social_v2">
+          <li id="bg-pre">
+            <img class="flipx" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+          
+            
+              
+                <li>
+                  <a href="http://github.com/WitMiao" target="_blank" class="social-github" title="github">
+                    <img src="https://cdn.jsdelivr.net/gh/WitMiao/blogAssets@0.1.0/img/social/github.png">
+                  </a>
+                </li>
+              
+            
+          
+          <li id="bg-next">
+            <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+        </div>
+      </div>
+    </div>
+  </figure>
+  <div id="video-container" style="">
+    <video style="object-fit: fill" id="bgvideo" class="video" video-name="" src="" width="auto" preload="auto">
+    </video>
+    <div id="video-btn" class="loadvideo videolive">
+    </div>
+    <div id="video-add">
+    </div>
+    <div class="video-stu">
+    </div>
+  </div>
+  <div class="headertop-down faa-float animated" onclick="headertop_down()">
+    <span>
+      <i class="fa fa-chevron-down" aria-hidden="true">
+      </i>
+    </span>
+  </div>
+</div>
+    <div id="page" class="site wrapper">
+      <header class="site-header no-select gizle sabit" role="banner">
+  <div class="site-top">
+    <div class="site-branding">
+      <span class="site-title">
+        <span class="logolink moe-mashiro">
+          <a href="/">
+            <span class="sakurasono">苗大</span>
+            <span class="shironeko">miaoda</span>
+          </a>
+        </span>
+      </span>
+    </div>
+    <div class="searchbox search-form-submit">
+      <i class="iconfont js-toggle-search iconsearch icon-search">
+      </i>
+    </div>
+    <div id="show-nav" class="showNav mobile-fit">
+      <div class="line line1">
+      </div>
+      <div class="line line2">
+      </div>
+      <div class="line line3">
+      </div>
+    </div>
+    <div class="lower-cantiner">
+      <div class="lower">
+        <nav class="mobile-fit-control hide">
+          <ul id="menu-new" class="menu">
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+                    首页
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+                    归档
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/categories/%E6%8A%80%E6%9C%AF/">
+                          <i class="fa fa-code" aria-hidden="true"></i>
+                          技术
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/%E7%94%9F%E6%B4%BB/">
+                          <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                          生活
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/%E8%B5%84%E6%BA%90/">
+                          <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                          资源
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/%E9%9A%8F%E6%83%B3/">
+                          <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                          随想
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/%E8%BD%AC%E8%BD%BD/">
+                          <i class="fa fa-book" aria-hidden="true"></i>
+                          转载
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="javascript:;">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+                    清单
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/tags/%E6%82%A6%E8%AF%BB/">
+                          <i class="fa fa-th-list faa-bounce" aria-hidden="true"></i>
+                          书单
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/bangumi/">
+                          <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                          番组
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/music/">
+                          <i class="fa fa-headphones" aria-hidden="true"></i>
+                          歌单
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/tags/%E5%9B%BE%E9%9B%86/">
+                          <i class="fa fa-photo" aria-hidden="true"></i>
+                          图集
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="/comment/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+                    留言板
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/links/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-link faa-shake" aria-hidden="true"></i>
+                    友人帐
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/donate/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-heart faa-pulse" aria-hidden="true"></i>
+                    赞赏
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+                    关于
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/about/">
+                          <i class="fa fa-meetup" aria-hidden="true"></i>
+                          我？
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/theme-sakura/">
+                          <i class="fa iconfont icon-sakura" aria-hidden="true"></i>
+                          主题
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/lab/">
+                          <i class="fa fa-cogs" aria-hidden="true"></i>
+                          Lab
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="/client/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-android faa-vertical" aria-hidden="true"></i>
+                    客户端
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/atom.xml">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-rss faa-pulse" aria-hidden="true"></i>
+                    RSS
+                  </span>
+                </a>
+                
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<div class="pattern-center-blank"></div>
+
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+          <header class="entry-header">
+            <h1 class="entry-title"></h1>
+            <p class="entry-census">&nbsp;·&nbsp;2022-2-22&nbsp;·&nbsp;<span id="busuanzi_value_page_pv"></span>次阅读</p></p>
+
+            <hr>
+          </header>
+        
+        <div class="entry-content">
+          <p>网页设计探索<br>一、背景</p>
+<ul>
+<li>背景：由于游测新官网重构的需要，项目组内无设计人员，故需进行网页设计探索</li>
+<li>技术定位：初级</li>
+<li>目标群体：前端开发</li>
+<li>技术应用场景：设计网页参考文章</li>
+<li>整体思路：常见网页设计风格，优秀网站设计参考<br>二、常见网页设计风格</li>
+</ul>
+<ol>
+<li>极简风</li>
+</ol>
+<p>“越少，越经典“这是不少设计大师遵循的设计风格。<br>“好的设计是尽可能少的设计”这条原则也同样适用于网页设计中。<br>除非必要的信息，页面中每增加一个元素，都会引起用户过多的小，甚至成为用户完成目标任务的阻碍。<br>极简设计的好处就在于它能最大化节约用户的时间成本。</p>
+<ol start="2">
+<li>无边框风</li>
+</ol>
+<p>这里的边框是指任何类型的装饰性容器。<br>通过去掉装饰性的容器，加强基本内容的设计感。<br>提升图片质量和排版布局，从而改变整体因无装饰性容器的视觉表现。</p>
+<ol start="3">
+<li>插画风</li>
+</ol>
+<p>除了使用大量图片作为背景或主体元素外，<br>图形插画的运用也是一种很好的方式。<br>网页Banner可以运用插画来表达网站主题，<br>同时加上插画图标的点缀，<br>使网页看起来清新有趣，<br>加强网站本身的独特性。</p>
+<ol start="4">
+<li>黑板风</li>
+</ol>
+<p>虽然黑板风格不是一个常见的风格，<br>但是其经典的使用方式和延伸效果<br>同样可以作为网页设计风格的一项选择。<br>最常见的运用方式就是将黑板作为背景元素，<br>同时黑板本身的装饰效果使网站呈现非常时尚。<br>许多经典的美食网站设计都采用了这种风格，<br>除了使用黑板以外，<br>将现实场景中的桌面运用到背景中也格外出彩。</p>
+<ol start="5">
+<li>扁平风</li>
+</ol>
+<p>扁平化设计可以说是时下最常用的网页设计风格了，<br>它弱化了材质、渐变、阴影，<br>去除了冗余信息的图形元素、排版。<br>这种风格设计可以使画面显得更加平滑，<br>提升了网站内容信息的视觉层级，<br>更加方便用户快速寻找自己需要的内容。<br>同时扁平化的界面能更好实现不同尺寸的转化。<br>这也是现在互联网公司较长采用的一种风格。</p>
+<ol start="6">
+<li>3D风格</li>
+</ol>
+<p>这里所说的3D风格不是纯粹的使人感到身在其中的3D坏境，<br>而是那些运用少量3D效果使整个网页显得更加灵动，<br>通过扁平化的基础上，添加一些生动的非扁平元素，<br>给网站带来了原本缺乏的纵深感，同时提升主体视觉吸引力。</p>
+<ol start="7">
+<li>纵向分割</li>
+</ol>
+<p>习惯了一栏式的设计，<br>将频幕一分为二甚至是多栏式的网页设计方式<br>受到了众多用户的喜爱，<br>在网页设计中使用新鲜的分屏式设计<br>可以方便呈现不同的信息，创造对比。<br>同时划分有效区域，方便用户进行快速选择和视觉聚焦。</p>
+<ol start="8">
+<li>超级头版</li>
+</ol>
+<p>以往的网页设计中，轮播幻灯片的效果使用充斥着各种网站，<br>虽然这种设计方式在许多首页上仍然适用名，<br>但却正在失去吸引力，取而代之的是采用的核心区域元素，<br>也就是主题的主题图或者说是超级头版，<br>在首页上使用尺寸超大、迷人的精美Banner，<br>而这个超级头版汇聚了对产品的精华总结，<br>从而将网站最重要的内容展示给用户。</p>
+<ol start="9">
+<li>照片与白字搭配</li>
+</ol>
+<p>严格意义上，这不算一种设计风格，<br>但是这种方法可以帮助我们快速制作出色的Banner或者网站，<br>通过对照片进行一些色彩叠加，同时搭配白色文案，<br>从而形成对比，使文字更加清晰易于传达。<br>你可以把它像公式一样记在脑子里，<br>碰到合适的机会就可以使用。</p>
+<p>三、优秀网站设计参考</p>
+<ol>
+<li>官网类网页设计</li>
+<li>The Cool Club</li>
+</ol>
+<p>网站地址：<a target="_blank" rel="noopener" href="https://thecoolclub.co/">https://thecoolclub.co</a><br>推荐指数：★★★★★</p>
+<p>亮点：丰富的微交互，鼠标悬停特效以及留白的巧妙应用<br>该网页点击即可一张张发牌的桥牌游戏，鼠标悬停即可触发的文字抖动特效，能够有效突出站点产品的大量留白的使用，以及其它多样的微交互，让页面内容丰富而有趣，突出其产品和网页特色的同时，以吸引用户停留，最终实现其商业价值。</p>
+<p>学习点：</p>
+<ul>
+<li>微交互结合小游戏，实现人机互动的同时，增强趣味性</li>
+</ul>
+<p>2.Papazian Jewelry Display</p>
+<p>网站地址：<a target="_blank" rel="noopener" href="https://www.papazian.gr/">https://www.papazian.gr</a><br>推荐指数：★★★</p>
+<p>亮点：吸睛的全屏视频背景和极简主义设计风格<br>该网页采用了全屏视屏背景，动态展示其产品真正的制作流程，利用其对每一件产品的用心吸引和感染用户。而且，整款页面的色调和简约风的设计，也与视频背景搭配协调，给人以高雅时尚，低调奢华之感。而这一点与其产品（即珠宝）的特点，是非常符合的。</p>
+<p>学习点：</p>
+<ul>
+<li>利用全屏视频背景，丰富和优化界面设计，吸引用户注意</li>
+</ul>
+<p>3.Draft</p>
+<p>网站地址：<a target="_blank" rel="noopener" href="https://draft.co.jp/en">https://draft.co.jp/en</a><br>推荐指数：★★★<br>亮点：不对称网格，动态文本，以及选中效果的应用<br>该款设计工作室的网站，在页面打开时，通过动态的文本展示，吊足用户用户胃口。然后使用不对称网格，逐一展示其设计作品。 而且还为罗列的每一个设计案例添加了选中效果，能够有效的激发用户兴趣，让他们忍不住点击了解详情。</p>
+<p>学习点：</p>
+<ul>
+<li>使用不对称网格，赋予UI个性</li>
+<li>动态展示页面文本，激发用户阅读兴趣</li>
+</ul>
+<p>注意：这并不是说，设计师们就一定得使用不对称网格盲目追求独特性，采用对称的网格设计，视觉效果也是极好。<br>4.Waaark</p>
+<p>网站地址：<a target="_blank" rel="noopener" href="https://waaark.com/">https://waaark.com</a><br>推荐指数：★★★★★<br>亮点：美观炫酷的流体特效<br>同为设计工作室类网站，本款设计也用到了不对称网格，将页面划分成了三个功能区。但却通过添加流体特效，带给用户完全不同的感受和体验，清新而充满趣味性。设计整体插画风格的应用，也是使整个页面更具视觉表现力。</p>
+<p>学习点：</p>
+<ul>
+<li>利用流体特效，丰富页面视觉展示效果<br>流体特效日渐在网页和App界面设计中流行起来，非常值得设计师们学习和应用，从而使页面设计更加独特。</li>
+</ul>
+<p>5.Mt. Cuba Center</p>
+<p>网站地址：<a target="_blank" rel="noopener" href="https://mtcubacenter.org/">https://mtcubacenter.org</a><br>推荐指数：★★★★</p>
+<p>亮点：动态文本和背景图片的完美配合<br>该款在线景点宣传网站，不同于同类网站通过静态文本介绍和一定图片轮播的形式展示其特色，而是完美的结合动态文本和高质量的动态背景图片进行展示，让用户更加切实的了解和感受到其美景。满屏恰到好处的绿色景观图，配合文字解说，舒适直观，让人仿佛身临其境。</p>
+<p>学习点：</p>
+<ul>
+<li>使用动态图片和文字，更加高效直观的展示界面内容<br>当然，具体设计实例中，根据需要，添加一定的图片或文字展示特效，也会让页面设计更加的炫酷吸睛。</li>
+</ul>
+<p>如图，为页面文本，字体，形状或图标添加独特展示特效，以吸引用户注意。<br>2. 电商类网页设计</p>
+<p>1.Wanderlust and Co</p>
+<p>网站地址：<a target="_blank" rel="noopener" href="https://www.wanderlustandco.com/">https://www.wanderlustandco.com</a><br>推荐指数：★★★★<br>亮点：多样的鼠标指针样式<br>该款饰品网站，美观时尚，搜索，筛选和导航功能齐全。而且，还针对每一个饰品类别，配有不同的鼠标样式。当用户浏览对应的饰品类别时，就会相应的变换鼠标指针样式，实用而贴心。这一点上，是非常受其目标用户（即女性用户）喜爱的。</p>
+<p>学习点：</p>
+<ul>
+<li>根据网站产品特色，添加更多人性化设计，比如鼠标样式，文本字体，色彩配色变化等</li>
+</ul>
+<p>2.Chairish</p>
+<p>网站地址：<a target="_blank" rel="noopener" href="http://thementic.com/opencart/OPC01/OPC0100013/">http://thementic.com/opencart/OPC01/OPC0100013/</a><br>推荐指数：★★★<br>亮点：促销产品首页轮播，带文字图标更加简单直观地展示产品类别<br>该款家具网页模板，采用促销产品的首页轮播设计，能够极大地吸引目标用户，促成购买的实现。而且，页面简单直观的带文字图标，对于用户更加方便快捷的查询和搜索需要的产品也是非常实用。</p>
+<p>学习点：</p>
+<ul>
+<li>首页热销或促销产品轮播，以吸引用户</li>
+<li>利用扁平化图标，简化界面设计</li>
+</ul>
+<p>3.Woodendot</p>
+<p>网站地址：<a target="_blank" rel="noopener" href="https://woodendot.com/en/">https://woodendot.com/en/</a><br>推荐指数：★★★<br>亮点：贴心的在线帮助<br>该款电商类网页直接在其右下角添加了在线问题解答板块，及时帮助用户解决浏览过程中出现的任何问题。不需要时，也可直接隐藏收起，用户体验绝佳。</p>
+<p>学习点：</p>
+<ul>
+<li>添加专门的促销，问答以及帮助模块，优化用户体验</li>
+</ul>
+<p>4.Manuel Rueda</p>
+<p>网站地址：<a target="_blank" rel="noopener" href="http://www.manuel-rueda.com/">http://www.manuel-rueda.com</a><br>推荐指数：★★★★★<br>亮点：吸睛的视觉滚动差设计<br>该款设计利用视觉滚动差设计，逐一展示设计师各种视频作品。用户直接滚动鼠标即可逐个查看各种优秀视频作品，如看电影一般，魅力十足，视觉效果超赞。<br>学习点：</p>
+<ul>
+<li>使用视觉滚动差设计，突出页面产品，布局和层级结构</li>
+</ul>
+<p>5.Signal Boosters</p>
+<p>网站地址：<a target="_blank" rel="noopener" href="https://www.signalboosters.com/">https://www.signalboosters.com</a><br>推荐指数：★★★<br>亮点：插画设计风格<br>该款设计整体使用了插画设计风格，使整款设计美观而不失趣味性，十分特别。</p>
+<p>学习点：</p>
+<ul>
+<li>网页设计中也可应用各种插画，手绘，动漫以及复古水墨风，加深用户第一印象<br>插画，手绘，动漫以及复古的水墨风，也是日渐流行起来的一大设计趋势，能够让整款设计极赋创意而不失趣味性，第一眼，即可吸引并留住用户，加深产品或品牌印象。</li>
+</ul>
+<p>如图，这款漫画风格的网页设计，色彩丰富，美观可爱，对其目标用户极具吸引力。<br>3. 简约风网页设计</p>
+<p>简约风网页设计突出的特点就是：页面干净简洁，清爽舒适而不失实用性。 而近几年涌现了很多新的优秀简约风网页设计。比如：</p>
+<p>1.Michael Villar</p>
+<p>网站地址：<a target="_blank" rel="noopener" href="http://www.michaelvillar.com/">http://www.michaelvillar.com</a><br>推荐指数：★★★★<br>亮点：极具怀旧特色的雪花特效<br>该款页面设计可以说是极简主义设计风格的典型案例了。简单的黑色背景，搭配文本和图标，通过字体，尺寸以及位置变化，直观而极赋层次的展示页面内容的同时，还添加了极具怀旧情怀的雪花特效。而这一点，成为其一大设计亮点，吸引用户的同时，也增加了页面的趣味性和感染力。<br>学习点：</p>
+<ul>
+<li>添加独特的文本，图标或图片特效，优化网页设计</li>
+</ul>
+<p>2.Not Your Standard</p>
+<p>网站地址：<a target="_blank" rel="noopener" href="https://notyourstandard.com/">https://notyourstandard.com</a><br>推荐指数：★★★<br>亮点：左侧导航栏设计，为用户提供周到的实时导航<br>很多情况下，导航设计的好坏，可以说直接影响到用户浏览和使用网页的愉悦程度。而该款设计，添加了可显示和隐藏的左侧导航栏设计，用户轻松点击、滑动，即可快速查找和浏览需要的信息，有效的避免了用户突然迷失在网站内的情况，从而极大地提升用户的安全感和网站满意度。<br>学习点：</p>
+<ul>
+<li>添加实时导航设计，例如隐藏导航栏，侧边栏等，提升用户体验</li>
+</ul>
+<p>3.MARK Goldstein</p>
+<p>网站地址：<a target="_blank" rel="noopener" href="http://m-goldstein.com/">http://m-goldstein.com</a><br>推荐指数：★★★★<br>亮点：渐变色彩的实时变化<br>该款作品集页面设计除了选择渐变色来增加网页吸引力，还通过各种渐变色的循环变化，极大地增强了页面的视觉表现力。</p>
+<p>学习点：</p>
+<ul>
+<li>配色以及渐变色的应用和变换，也是增强简约风页面视觉吸引力的重要途径</li>
+</ul>
+<ol start="4">
+<li>Fresh Fronks</li>
+</ol>
+<p>网站地址：<a target="_blank" rel="noopener" href="http://freshfronks.com/">http://freshfronks.com</a><br>推荐指数：★★★★<br>亮点：实物展示<br>该款设计通过简约字体排版设计简单介绍产品的同时，结合产品实物，点击即可了解产品详情。简洁干净，而不失实用性和创造性。</p>
+<p>学习点：</p>
+<ul>
+<li>结合产品实物和特色进行界面设计</li>
+</ul>
+<ol start="4">
+<li>其他最新创意网页设计</li>
+</ol>
+<p>1.Dyad</p>
+<p>网站地址：<a target="_blank" rel="noopener" href="https://dyaddemo.wordpress.com/">https://dyaddemo.wordpress.com</a><br>推荐指数：★★★<br>亮点：响应式设计，高清图片与文字的完美搭配<br>该款食谱分享网站的突出特点是其响应式设计，即页面能够能够自动根据用户设备系统，屏幕尺寸以及屏幕定向等进行调整和展示，使页面能够在各种设备友好的展示网页，从而使其更具弹性和兼容性。而且，作为美食类网站，高清图片与文字解说的绝佳搭配也使美食更加诱人，让人跃跃欲试。</p>
+<p>学习点：</p>
+<ul>
+<li>响应式设计也是网页设计的一大潮流</li>
+<li>高清图片与文字的搭配，能使页面更具吸引力和说服力</li>
+</ul>
+<p>2.Dinner for Five</p>
+<p>网站地址：<a target="_blank" rel="noopener" href="http://dff.mitsugutakahashi.com/">http://dff.mitsugutakahashi.com</a><br>推荐指数：★★★<br>亮点：直观清晰的文本结构层次<br>该款作品集网站着陆页，虽然仅仅选用了文本以展示页面内容，但设计师却巧妙的通过文本字体，尺寸以及排版的不同，展现出直观清晰的页面层次结构，巧妙的避免了页面因单纯文本展示而容易出现的内容繁杂，无重点，可读性差等问题。<br>学习点：</p>
+<ul>
+<li>网页UI设计中注意视觉层次设计，让页面内容轻松层级化<br>实际UI设计中，无论是文本、图片、视频、图标等部件的单独或结合使用，都要注意通过其尺寸，页面位置、色彩、对齐方式、排版以及布局的变换，层级化页面内容，创建更加清晰直观的页面结构层次，优化用户体验。</li>
+</ul>
+<p>3.La Shop Studio</p>
+<p>网站地址：<a target="_blank" rel="noopener" href="http://lashopstudios.com/">http://lashopstudios.com/</a><br>推荐指数：★★★★★<br>亮点：交互式设计，创意的音频设计<br>该款交互是网页设计的突出特点就是：创意的加入音频设计以快速吸引用户注意力。比如，其首页添加了简单的五线谱设计，当鼠标移动到线谱上时，线谱不仅会出现相应的波形变化，同时还会有音乐产生，就如同即兴音乐表演一般，非常有趣。</p>
+<p>学习点：</p>
+<ul>
+<li>交互式设计能够让页面更具趣味性</li>
+<li>UI设计加入声音，让页面视觉和听觉魅力都兼具<br>现今，网页或App UI设计不再仅仅依靠常规的视觉，越来越多的设计师通过添加各种音频设计，以带动用户的听觉，增加页面的表现力和吸引力。</li>
+</ul>
+<p>4.The Glyph Studio</p>
+<p>网站地址：<a target="_blank" rel="noopener" href="http://www.theglyph.studio/#home">http://www.theglyph.studio/#home</a><br>推荐指数：★★★★<br>亮点：3D设计和有趣的鼠标悬停特效<br>该款交互式网页设计，用户指向页面3D圆球，即可随意旋转或拨弄该圆球。而且页面四角按钮的鼠标悬停效果也是十分有趣。</p>
+<p>学习点：</p>
+<ul>
+<li>利用3D技术展示页面内容，让其更具视觉吸引力</li>
+<li>为页面按钮、图片或文字添加独特的悬停特效，注意微交互设计</li>
+</ul>
+<p>5.Big Dropinc</p>
+<p>网站地址：<a target="_blank" rel="noopener" href="https://www.bigdropinc.com/">https://www.bigdropinc.com</a><br>推荐指数：★★★<br>亮点：极具视觉魅力的明亮配色<br>该款网页设计通过明亮的配色以吸引用户注意。简约的设计风格也让页面更加直观实用。</p>
+<p>学习点：</p>
+<ul>
+<li>注意界面明亮色彩和配色的选择</li>
+</ul>
+<p>四、总结</p>
+<ul>
+<li>无论哪种类型，以上罗列的各种最优秀的网页设计风格或实例，都或多或少应用或体现了各种网页设计趋势，也展现了一定的网页设计技巧。希望它们能够为你带来无限灵感，从而助你创建更加优质吸睛的网页设计。</li>
+</ul>
+<p>五、相关链接</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.mockplus.cn/example/rp">https://www.mockplus.cn/example/rp</a> - 摩客网网页模板</li>
+<li><a target="_blank" rel="noopener" href="https://store.vuetifyjs.com/">https://store.vuetifyjs.com/</a> - vuetify模板商城</li>
+<li><a target="_blank" rel="noopener" href="https://js.design/f/EnEr6T?p=dLkqVI4iDa">https://js.design/f/EnEr6T?p=dLkqVI4iDa</a> - 游测新官网设计网站</li>
+</ul>
+
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/WitMiao/blogAssets@0.1.0/img/custom/donate/AliPayQR.jpg"></li>
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/WitMiao/blogAssets@0.1.0/img/custom/donate/WeChanQR.jpg"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+          
+            <div class="post-nepre half previous">
+          
+            <a href="/2022/02/22/Web%20%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-CSS3%20%E7%A1%AC%E4%BB%B6%E5%8A%A0%E9%80%9F(GPU%20%E5%8A%A0%E9%80%9F)/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
+              </div>
+              <span class="label">
+              Previous Post</span>
+              <div class="info">
+                <h3>
+                </h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+        
+          
+            <div class="post-nepre half next">
+          
+            <a href="/2021/08/27/angular%20%E9%A1%B5%E9%9D%A2%E5%86%85%E8%B7%B3%E8%BD%AC(%E9%94%9A%E7%82%B9%E5%AE%9A%E4%BD%8D%E8%A2%AB%E9%A1%B6%E9%83%A8%E5%9B%BA%E5%AE%9A%E5%AF%BC%E8%88%AA%E6%A0%8F%E9%81%AE%E4%BD%8F)%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                angular 页面内跳转(锚点定位被顶部固定导航栏遮住)踩坑记录</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
+      
+<div id="vcomments"></div>
+<script>
+  window.onload = function(){
+      var valine = new Valine();
+      valine.init({
+        el: '#vcomments',
+        appId: "QcvXSbmzMnoQqTzJPzdPnGGc-gzGzoHsz",
+        appKey: "cFdSUREMDewBegMTetWHHaLs",
+        path: window.location.pathname,
+        placeholder: "想说些什么呢 ..."
+      })
+  }
+</script>
+
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+          <a href="" class="profile gravatar"><img src="" itemprop="image" alt="" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="" itemprop="url" rel="author"></a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i></p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
+</div>
+
+
+
+    </div>    
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            // PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+    <!-- <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 miaoda<br>
+      powered_by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer> -->
+<footer id="colophon" class="site-footer" role="contentinfo">
+  <div class="site-info">
+    <div class="footertext">
+      <div class="img-preload">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/wordpress-rotating-ball-o.svg">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/disqus-preloader.svg">
+      </div>
+    </div>
+    <div class="footer-device">
+      <p style="font-family: 'Ubuntu', sans-serif;">
+        <span style="color: #666;">
+          &copy 2020~2021 <a style="color: #666;;text-decoration: underline dotted rgba(0, 0, 0, .1);" href="https://miaoda.fun/about/">MiaoDa</a> All Rights Reserved
+        </span>
+      </p>
+      <p style="font-family: 'Ubuntu', sans-serif;">
+        <span style="color: #b9b9b9;">
+          Powered by Hexo
+          <i class="iconfont icon-sakura rotating" style="color: #ffc0cb;display:inline-block"></i>
+          Theme
+          <a href="https://github.com/honjun/hexo-theme-sakura" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">
+            Sakura</a>
+          </a>
+        </span>
+      </p>
+    </div>
+  </div><!-- .site-info -->
+</footer>
+
+
+
+<!-- <script src="/js/tocbot.js"></script> -->
+<script type="text/javascript" src="/js/lib.min.js"></script>
+<script type="text/javascript" src="/js/miao-engine.js" type="module" async="true"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/InsightSearch.js"></script>
+<script type="text/javascript" src="/js/jquery.fancybox.min.js"></script>
+<script type="text/javascript" src="/js/zoom.min.js"></script>
+<script type="text/javascript" src="/js/sakura-app.js"></script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script type="text/javascript" src="/js/Valine.min.js"></script>
+<script src="/js/botui.js"></script>
+<!-- 不蒜子 网页计数器 -->
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script> -->
+<script type="text/javascript">
+  /* <![CDATA[ */
+  if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+    var Poi = {
+      "pjax": "1",
+      "movies": {
+        "url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2",
+        "name": "Unbroken.mp4",
+        "live": "close"
+      },
+      "windowheight": "fixed",
+      "codelamp": "close",
+      "ajaxurl": "",
+      "order": "asc",
+      "formpostion": "bottom"
+    };
+  } else {
+    var Poi = {
+      "pjax": "1",
+      "movies": {
+        "url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2",
+        "name": "Unbroken.mp4",
+        "live": "open"
+      },
+      "windowheight": "auto",
+      "codelamp": "close",
+      "ajaxurl": "",
+      "order": "asc",
+      "formpostion": "bottom"
+    };
+  }
+  /* ]]> */
+</script>
+<script>
+  $(document).ready(function() {
+    if ($(".toc").length > 0 && document.body.clientWidth > 1200) {
+      if ($(".pattern-center").length > 0) { //有图的情况
+        tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -400,
+          scrollSmoothOffset: -85
+        });
+      } else {
+        tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -85,
+          scrollSmoothOffset: -85
+        });
+      }
+      var offsetTop = $('.toc').offset().top - 95;
+      window.onscroll = function() {
+        var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+        if (scrollTop >= offsetTop) {
+          $('.toc').addClass('toc-fixed');
+        } else {
+          $('.toc').removeClass('toc-fixed');
+        }
+      }
+    }
+  });
+</script>
+    <div class="openNav no-select" style="height: 50px;">
+      <div class="iconflat no-select" style="width: 50px; height: 50px;">
+        <div class="icon"></div>
+      </div>
+      <div class="site-branding search-form-submit">
+        <i class="iconfont js-toggle-search iconsearch icon-search"></i>
+      </div>
+    </div>
+  </section>
+  <div id="mo-nav" class="">
+  <div class="m-avatar">
+    <img src="https://cdn.jsdelivr.net/gh/WitMiao/blogAssets@0.1.0/img/custom/avatar.jpg">
+  </div>
+  <p style="text-align: center; color: #333; font-weight: 900; font-family: 'Ubuntu', sans-serif; letter-spacing: 1.5px">苗大miaoda</p>
+  <p style="text-align: center; word-spacing: 20px;">
+    
+      
+        <a href="http://github.com/WitMiao" class="fa fa-github" target="_blank" style="color: #333; margin-left:20px"></a>
+      
+    
+  </p>
+  <ul id="menu-new-1" class="menu">
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+            首页
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/archives">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+            归档
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/categories/%E6%8A%80%E6%9C%AF/">
+                  <i class="fa fa-code" aria-hidden="true"></i>
+                  技术
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/%E7%94%9F%E6%B4%BB/">
+                  <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                  生活
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/%E8%B5%84%E6%BA%90/">
+                  <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                  资源
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/%E9%9A%8F%E6%83%B3/">
+                  <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                  随想
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/%E8%BD%AC%E8%BD%BD/">
+                  <i class="fa fa-book" aria-hidden="true"></i>
+                  转载
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="javascript:;">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+            清单
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/tags/%E6%82%A6%E8%AF%BB/">
+                  <i class="fa fa-th-list faa-bounce" aria-hidden="true"></i>
+                  书单
+                </a>
+              </li>
+            
+              <li>
+                <a href="/bangumi/">
+                  <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                  番组
+                </a>
+              </li>
+            
+              <li>
+                <a href="/music/">
+                  <i class="fa fa-headphones" aria-hidden="true"></i>
+                  歌单
+                </a>
+              </li>
+            
+              <li>
+                <a href="/tags/%E5%9B%BE%E9%9B%86/">
+                  <i class="fa fa-photo" aria-hidden="true"></i>
+                  图集
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/comment/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+            留言板
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/links/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-link faa-shake" aria-hidden="true"></i>
+            友人帐
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/donate/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-heart faa-pulse" aria-hidden="true"></i>
+            赞赏
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+            关于
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/about/">
+                  <i class="fa fa-meetup" aria-hidden="true"></i>
+                  我？
+                </a>
+              </li>
+            
+              <li>
+                <a href="/theme-sakura/">
+                  <i class="fa iconfont icon-sakura" aria-hidden="true"></i>
+                  主题
+                </a>
+              </li>
+            
+              <li>
+                <a href="/lab/">
+                  <i class="fa fa-cogs" aria-hidden="true"></i>
+                  Lab
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/client/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-android faa-vertical" aria-hidden="true"></i>
+            客户端
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/atom.xml">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-rss faa-pulse" aria-hidden="true"></i>
+            RSS
+          </span>
+        </a>
+        
+      </li>
+    
+  </ul>
+  <p style="text-align: center; font-size: 13px; color: #b9b9b9;">&copy 2019 hexo-sakura</p>
+</div>
+<button onclick="topFunction()" class="mobile-cd-top" id="moblieGoTop" title="Go to top" style="display: none;"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+<style>
+  .aplayer .aplayer-lrc {
+    height: 35px;
+  }
+  .aplayer .aplayer-lrc p{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px !important;
+  }
+  .aplayer .aplayer-lrc p.aplayer-lrc-current{
+    color: #FF1493;
+  }
+  .aplayer.aplayer-narrow .aplayer-body{
+    left: -66px !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-lrc {
+    display: none;
+  }
+  .aplayer .aplayer-lrc.aplayer-lrc-hide {
+      display:none !important;
+  }
+  .aplayer.aplayer-fixed .lrc-show {
+    display: block;
+    background: rgba(255, 255, 255, 0.8);
+  }
+</style>
+<meting-js
+
+    id="70991620"
+
+    server="netease"
+
+    type="playlist"
+
+    fixed="true"
+
+    autoplay="false"
+
+    loop="all"
+
+    order="random"
+
+    preload="none"
+
+    volume="0.3"
+
+    mutex="true"
+
+</meting-js>
+<script>
+  $(function(){
+    $('body').on('click', '.aplayer', function(){
+      if($('.aplayer-button').hasClass('aplayer-play')) {
+        $('.aplayer-lrc').removeClass('lrc-show');
+      } else {
+        $('.aplayer-lrc').addClass('lrc-show');
+      }
+    })
+  });
+</script>
+</body>
+<!-- 背景效果 -->
+<!-- 漂浮彩带，点击可变换 -->
+<!-- <script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/piao.js"></script>    -->
+
+ <!-- 可随鼠标滚动并吸附的线条 -->
+<script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/canvas-nest.min.js"></script> 
+
+<!-- 漂浮物效果 -->
+<!-- 樱花飘落 -->
+<!-- <script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/sakura.js"></script>  -->
+ <!-- 雪花飘落 -->
+ <!--<script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/snow.js"></script>  -->
+
+<!-- 看板娘 -->
+<script src="https://cdn.jsdelivr.net/gh/WitMiao/live2d-widget@latest/autoload.js"></script>
+</html>
