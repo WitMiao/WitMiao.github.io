@@ -6,7 +6,7 @@
   <link href="https://miaoda.fun/atom.xml" rel="self"/>
   
   <link href="https://miaoda.fun/"/>
-  <updated>2022-02-22T03:54:13.351Z</updated>
+  <updated>2022-09-05T06:55:13.602Z</updated>
   <id>https://miaoda.fun/</id>
   
   <author>
@@ -17,77 +17,65 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
+    <title>网页设计探索</title>
+    <link href="https://miaoda.fun/2022/03/03/%E7%BD%91%E9%A1%B5%E8%AE%BE%E8%AE%A1%E6%8E%A2%E7%B4%A2/"/>
+    <id>https://miaoda.fun/2022/03/03/%E7%BD%91%E9%A1%B5%E8%AE%BE%E8%AE%A1%E6%8E%A2%E7%B4%A2/</id>
+    <published>2022-03-03T07:30:00.000Z</published>
+    <updated>2022-09-05T06:55:13.602Z</updated>
+    
+    
+    <summary type="html">网页设计探索</summary>
+    
+    
+    
+    <category term="前端" scheme="https://miaoda.fun/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+    <category term="前端" scheme="https://miaoda.fun/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+    <category term="设计" scheme="https://miaoda.fun/tags/%E8%AE%BE%E8%AE%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Web 性能优化-CSS3 硬件加速(GPU 加速)</title>
+    <link href="https://miaoda.fun/2022/03/01/Web%20%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-CSS3%20%E7%A1%AC%E4%BB%B6%E5%8A%A0%E9%80%9F(GPU%20%E5%8A%A0%E9%80%9F)/"/>
+    <id>https://miaoda.fun/2022/03/01/Web%20%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-CSS3%20%E7%A1%AC%E4%BB%B6%E5%8A%A0%E9%80%9F(GPU%20%E5%8A%A0%E9%80%9F)/</id>
+    <published>2022-03-01T07:15:00.000Z</published>
+    <updated>2022-09-05T06:55:13.597Z</updated>
+    
+    
+    <summary type="html">Web 性能优化-CSS3 硬件加速(GPU 加速)</summary>
+    
+    
+    
+    <category term="前端" scheme="https://miaoda.fun/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+    <category term="前端" scheme="https://miaoda.fun/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+    <category term="技术" scheme="https://miaoda.fun/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>前端开发规范</title>
     <link href="https://miaoda.fun/2022/02/22/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/"/>
     <id>https://miaoda.fun/2022/02/22/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/</id>
-    <published>2022-02-22T03:48:03.180Z</published>
-    <updated>2022-02-22T03:54:13.351Z</updated>
+    <published>2022-02-22T08:00:00.000Z</published>
+    <updated>2022-09-05T06:53:42.998Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;前端开发规范&lt;br&gt;规范目的&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;为提高团队协作效率&lt;/li&gt;
-&lt;li&gt;便于后期添加功能及优化维护&lt;/li&gt;
-&lt;li&gt;输出高质量的文档&lt;br&gt;命名规范&lt;/li&gt;
-&lt;li&gt;为了让大家书写可维护的代码，而不是一次性的代码&lt;/li&gt;
-&lt;li&gt;让团队当中其他人</summary>
-        
-      
+    <summary type="html">前端开发规范</summary>
     
     
     
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="https://miaoda.fun/2022/02/22/Web%20%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-CSS3%20%E7%A1%AC%E4%BB%B6%E5%8A%A0%E9%80%9F(GPU%20%E5%8A%A0%E9%80%9F)/"/>
-    <id>https://miaoda.fun/2022/02/22/Web%20%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-CSS3%20%E7%A1%AC%E4%BB%B6%E5%8A%A0%E9%80%9F(GPU%20%E5%8A%A0%E9%80%9F)/</id>
-    <published>2022-02-22T03:44:40.181Z</published>
-    <updated>2022-02-22T03:45:57.320Z</updated>
+    <category term="前端" scheme="https://miaoda.fun/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;Web 性能优化-CSS3 硬件加速(GPU 加速)&lt;br&gt;CSS3 硬件加速简介&lt;br&gt;CSS3 硬件加速又叫做 GPU 加速，是利用 GPU 进行渲染，减少 CPU 操作的一种优化方案。由于 GPU 中的 transform 等 CSS 属性不会触发</summary>
-        
-      
+    <category term="前端" scheme="https://miaoda.fun/tags/%E5%89%8D%E7%AB%AF/"/>
     
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="https://miaoda.fun/2022/02/22/%E7%BD%91%E9%A1%B5%E8%AE%BE%E8%AE%A1%E6%8E%A2%E7%B4%A2/"/>
-    <id>https://miaoda.fun/2022/02/22/%E7%BD%91%E9%A1%B5%E8%AE%BE%E8%AE%A1%E6%8E%A2%E7%B4%A2/</id>
-    <published>2022-02-22T03:27:02.295Z</published>
-    <updated>2022-02-22T03:29:53.538Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;网页设计探索&lt;br&gt;一、背景&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;背景：由于游测新官网重构的需要，项目组内无设计人员，故需进行网页设计探索&lt;/li&gt;
-&lt;li&gt;技术定位：初级&lt;/li&gt;
-&lt;li&gt;目标群体：前端开发&lt;/li&gt;
-&lt;li&gt;技术应用场景：设计网页参考文章&lt;/li&gt;
-&lt;li&gt;整体</summary>
-        
-      
-    
-    
-    
+    <category term="技术" scheme="https://miaoda.fun/tags/%E6%8A%80%E6%9C%AF/"/>
     
   </entry>
   

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">miaoda</title>
+  <title itemprop="name">archive_a: 2022/3 | miaoda</title>
   
     <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/WitMiao/blogAssets@0.1.0/img/custom/favicon.ico">
   
@@ -341,133 +341,214 @@
   </div>
 </header>
 
-      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
-<div class="pattern-center-blank"></div>
-
+      <div class="blank" style="padding-top: 75px;">
+</div>
 <div id="content" class="site-content">
-  <div id="primary" class="content-area">
-    <main id="main" class="site-main" role="main">
-      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
-        <div class="toc"></div>
-        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
-        
-          <header class="entry-header">
-            <h1 class="entry-title"></h1>
-            <p class="entry-census">&nbsp;·&nbsp;2022-2-22&nbsp;·&nbsp;<span id="busuanzi_value_page_pv"></span>次阅读</p></p>
-
-            <hr>
-          </header>
-        
-        <div class="entry-content">
-          <p>Web 性能优化-CSS3 硬件加速(GPU 加速)<br>CSS3 硬件加速简介<br>CSS3 硬件加速又叫做 GPU 加速，是利用 GPU 进行渲染，减少 CPU 操作的一种优化方案。由于 GPU 中的 transform 等 CSS 属性不会触发 repaint，所以能大大提高网页的性能。<br>先看个demo页面示例，左边元素的动画通过 left/top 操作位置实现，右边元素的动画通过 transform: translate 实现，你可以打开 chrome 的 “Paint flashing” 查看，绿色部分是正在 repaint 的内容。<br>从 demo 中可以看到左边的图形在运动时外层有一圈绿色的边框，表示元素不停地 repaint，并且可以看到其运动过程中有丢帧现象，具体表现为运动不连贯，有轻微闪动。</p>
-<p>动画与帧<br>之前学习 flash 的时候，就知道动画是由一帧一帧的图片组成，在浏览器中也是如此。我们首先看一下，浏览器每一帧都做了什么。</p>
-<ol>
-<li>JavaScript：JavaScript 实现动画效果，DOM 元素操作等。</li>
-<li>Style（计算样式）：确定每个 DOM 元素应该应用什么 CSS 规则。</li>
-<li>Layout（布局）：计算每个 DOM 元素在最终屏幕上显示的大小和位置。由于 web 页面的元素布局是相对的，所以其中任意一个元素的位置发生变化，都会联动的引起其他元素发生变化，这个过程叫 reflow。</li>
-<li>Paint（绘制）：在多个层上绘制 DOM 元素的的文字、颜色、图像、边框和阴影等。</li>
-<li>Composite（渲染层合并）：按照合理的顺序合并图层然后显示到屏幕上。<br>动画与图层<br>浏览器在获取 render tree（详细知识可以查看Web性能优化-页面重绘和回流（重排））后，渲染树中包含了大量的渲染元素，每一个渲染元素会被分到一个图层中，每个图层又会被加载到 GPU 形成渲染纹理。GPU 中 transform 是不会触发 repaint 的，这一点非常类似 3D 绘图功能，最终这些使用 transform 的图层都会由独立的合成器进程进行处理。<br>过程如下：<br>render tree -&gt; 渲染元素 -&gt; 图层 -&gt; GPU 渲染 -&gt; 浏览器复合图层 -&gt; 生成最终的屏幕图像。<br>TIPS: chrome devtools 中可以开启 Rendering 中的 Layer borders 查看图层纹理。<br>其中黄色边框表示该元素有 3d 变换，表示放到一个新的复合层（composited layer）中渲染，蓝色栅格表示正常的 render layer。<br>在文章开始给出的例子中，我们也可以开启 Layer borders，可以观察到，使用 transform: translate 动画的元素，外围有一个黄色的边框，可知其为复合层。</li>
-</ol>
-<p>在 GPU 渲染的过程中，一些元素会因为符合了某些规则，而被提升为独立的层（黄色边框部分），一旦独立出来，就不会影响其它 DOM 的布局，所以我们可以利用这些规则，将经常变换的 DOM 主动提升到独立的层，那么在浏览器的一帧运行中，就可以减少 Layout 和 Paint 的时间了。<br>创建独立图层<br>哪些规则能让浏览器主动帮我们创建独立的层呢？<br>6. 3D 或者透视变换（perspective，transform） 的 CSS 属性。<br>7. 使用加速视频解码的 video 元素。<br>8. 拥有 3D（WebGL） 上下文或者加速 2D 上下文的 canvas 元素。<br>9. 混合插件（Flash)。<br>10. 对自己的 opacity 做 CSS 动画或使用一个动画 webkit 变换的元素。<br>11. 拥有加速 CSS 过滤器的元素。<br>12. 元素有一个包含复合层的后代节点(换句话说，就是一个元素拥有一个子元素，该子元素在自己的层里)。<br>13. 元素有一个兄弟元素在复合图层渲染，并且该兄弟元素的 z-index 较小，那这个元素也会被应用到复合图层。<br>关于 z-index 导致的硬件加速的问题，可以查看这篇文章 CSS3硬件加速也有坑！！<br>开启 GPU 加速<br>CSS 中的以下几个属性能触发硬件加速：<br>14. transform<br>15. opacity<br>16. filter<br>17. will-change<br>如果有一些元素不需要用到上述属性，但是需要触发硬件加速效果，可以使用一些小技巧来诱导浏览器开启硬件加速。</p>
-<p>CSS<br>.element {<br>    -webkit-transform: translateZ(0);<br>    -moz-transform: translateZ(0);<br>    -ms-transform: translateZ(0);<br>    -o-transform: translateZ(0);<br>    transform: translateZ(0);<br>    /<strong>或者</strong>/<br>    transform: rotateZ(360deg);<br>    transform: translate3d(0, 0, 0);<br>}<br>注意：我在不同的资料中查到的 transform 是否能触发硬件加速的结果不同，自己测试后，发现结果是可以。<br>要注意的问题<br>（1）过多地开启硬件加速可能会耗费较多的内存，因此什么时候开启硬件加速，给多少元素开启硬件加速，需要用测试结果说话。<br>（2）GPU 渲染会影响字体的抗锯齿效果。这是因为 GPU 和 CPU 具有不同的渲染机制，即使最终硬件加速停止了，文本还是会在动画期间显示得很模糊。<br>参考文章<br>• Increase Your Site’s Performance with Hardware-Accelerated CSS<br>• 用CSS开启硬件加速来提高网站性能<br>• css3硬件加速<br>• CSS3硬件加速也有坑！！<br>• GPU加速是什么<br>• 使用CSS3 will-change提高页面滚动、动画等渲染性能</p>
-
-        </div>
-        <!-- .entry-content -->
-        <div class="single-reward">
-          <div class="reward-open">赏
-            <div class="reward-main">
-              <ul class="reward-row">
-                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/WitMiao/blogAssets@0.1.0/img/custom/donate/AliPayQR.jpg"></li>
-                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/WitMiao/blogAssets@0.1.0/img/custom/donate/WeChanQR.jpg"></li>
-              </ul>
+  <div id="main">
+    <header class="page-header">
+      <h1 class="cat-title">
+      归档</h1>
+      <span class="cat-des">
+        <p>
+        Archives</p>
+      </span>
+    </header>
+    <div id="main-part">
+      <article class="art">
+        <div class="art-main">
+          <div class="art-content">
+            <div id="archives">
+              <p style="text-align:right;">
+                [<span id="al_expand_collapse" style="cursor: s-resize;">
+                全部展开/收缩</span>
+              ]</p>
+              
+              
+              
+              
+              
+                
+                <h3 class="al_year">2022年</h3>
+              
+              
+                
+                <ul class="al_mon_list">
+                  <li class="al_li">
+                    <span class="al_mon" style="cursor: s-resize;">
+                      03月(<span id="post-num">
+                      3</span>
+                    篇文章)</span>
+                    <ul class="al_post_list" style="">
+              
+                      <li>
+                        <a href="/2022/03/03/%E7%BD%91%E9%A1%B5%E8%AE%BE%E8%AE%A1%E6%8E%A2%E7%B4%A2/">
+                          <span style="color:#0bf;">
+                          03日15:30:00</span>
+                          网页设计探索
+                        </a>
+                      </li>
+                      
+              
+              
+              
+              
+              
+                      <li>
+                        <a href="/2022/03/01/Web%20%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-CSS3%20%E7%A1%AC%E4%BB%B6%E5%8A%A0%E9%80%9F(GPU%20%E5%8A%A0%E9%80%9F)/">
+                          <span style="color:#0bf;">
+                          01日15:15:00</span>
+                          Web 性能优化-CSS3 硬件加速(GPU 加速)
+                        </a>
+                      </li>
+                      
+                    </ul>
+                  </li>
+                </ul>
+              
+              
+              
+              
+              
+              
+                
+                <ul class="al_mon_list">
+                  <li class="al_li">
+                    <span class="al_mon" style="cursor: s-resize;">
+                      02月(<span id="post-num">
+                      3</span>
+                    篇文章)</span>
+                    <ul class="al_post_list" style="">
+              
+                      <li>
+                        <a href="/2022/02/22/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/">
+                          <span style="color:#0bf;">
+                          22日16:00:00</span>
+                          前端开发规范
+                        </a>
+                      </li>
+                      
+                    </ul>
+                  </li>
+                </ul>
+              
+              
+              
+              
+              
+                
+                <h3 class="al_year">2021年</h3>
+              
+              
+                
+                <ul class="al_mon_list">
+                  <li class="al_li">
+                    <span class="al_mon" style="cursor: s-resize;">
+                      08月(<span id="post-num">
+                      3</span>
+                    篇文章)</span>
+                    <ul class="al_post_list" style="">
+              
+                      <li>
+                        <a href="/2021/08/27/angular%20%E9%A1%B5%E9%9D%A2%E5%86%85%E8%B7%B3%E8%BD%AC(%E9%94%9A%E7%82%B9%E5%AE%9A%E4%BD%8D%E8%A2%AB%E9%A1%B6%E9%83%A8%E5%9B%BA%E5%AE%9A%E5%AF%BC%E8%88%AA%E6%A0%8F%E9%81%AE%E4%BD%8F)%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/">
+                          <span style="color:#0bf;">
+                          27日14:00:00</span>
+                          angular 页面内跳转(锚点定位被顶部固定导航栏遮住)踩坑记录
+                        </a>
+                      </li>
+                      
+              
+              
+              
+              
+              
+                      <li>
+                        <a href="/2021/08/16/angular%E8%B0%83%E7%94%A8%E7%99%BE%E5%BA%A6%E5%9C%B0%E5%9B%BEapi%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/">
+                          <span style="color:#0bf;">
+                          16日13:30:00</span>
+                          angular调用百度地图api踩坑记录
+                        </a>
+                      </li>
+                      
+                    </ul>
+                  </li>
+                </ul>
+              
+              
+              
+              
+              
+                
+                <h3 class="al_year">2020年</h3>
+              
+              
+                
+                <ul class="al_mon_list">
+                  <li class="al_li">
+                    <span class="al_mon" style="cursor: s-resize;">
+                      10月(<span id="post-num">
+                      3</span>
+                    篇文章)</span>
+                    <ul class="al_post_list" style="">
+              
+                      <li>
+                        <a href="/2020/10/30/jQuery-input%E8%BE%93%E5%85%A5%E9%AA%8C%E8%AF%81/">
+                          <span style="color:#0bf;">
+                          30日15:00:00</span>
+                          jQuery-input输入验证
+                        </a>
+                      </li>
+                      
+                    </ul>
+                  </li>
+                </ul>
+              
+              
+              
+              
+              
+              
+                
+                <ul class="al_mon_list">
+                  <li class="al_li">
+                    <span class="al_mon" style="cursor: s-resize;">
+                      08月(<span id="post-num">
+                      3</span>
+                    篇文章)</span>
+                    <ul class="al_post_list" style="">
+              
+                      <li>
+                        <a href="/2020/08/12/Hexo-Theme-Sakura/">
+                          <span style="color:#0bf;">
+                          12日22:16:01</span>
+                          Hexo-Theme-Sakura
+                        </a>
+                      </li>
+                      
+              
+              
+              
+              
+              
+                      <li>
+                        <a href="/2020/08/11/%E8%8E%B7%E5%8F%96%E8%B4%A8%E6%95%B0%E7%AE%97%E6%B3%95%EF%BC%9A%E5%9F%83%E6%8B%89%E6%89%98%E6%96%AF%E7%89%B9%E5%B0%BC%E7%AD%9B%E6%B3%95/">
+                          <span style="color:#0bf;">
+                          11日15:00:00</span>
+                          获取质数算法：埃拉托斯特尼筛法
+                        </a>
+                      </li>
+                      
+                    </ul>
+                  </li>
+                </ul>
+              
+              
             </div>
           </div>
         </div>
-        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
-        <footer class="post-footer">
-          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
-          <div class="post-tags">
-          </div>
-          <div class="post-share">
-            <div class="social-share sharehidden share-component"></div>
-            <i class="iconfont show-share icon-forward"></i>
-          </div>
-        </footer><!-- .entry-footer -->
       </article>
-      <!-- #post-## -->
-      <div class="toc" style="background: none;"></div>
-      <section class="post-squares nextprev">
-        
-          
-            <div class="post-nepre half previous">
-          
-            <a href="/2022/02/22/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/" rel="prev">
-              <div class="background">
-                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
-              </div>
-              <span class="label">
-              Previous Post</span>
-              <div class="info">
-                <h3>
-                </h3>
-                <hr>
-              </div>
-            </a>
-          </div>
-        
-        
-          
-            <div class="post-nepre half next">
-          
-            <a href="/2022/02/22/%E7%BD%91%E9%A1%B5%E8%AE%BE%E8%AE%A1%E6%8E%A2%E7%B4%A2/" rel="next">
-              <div class="background">
-                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
-              </div>
-              <span class="label">
-              Next Post</span>
-              <div class="info">
-                <h3>
-                </h3>
-                <hr>
-              </div>
-            </a>
-          </div>
-        
-      </section>
-      
-<div id="vcomments"></div>
-<script>
-  window.onload = function(){
-      var valine = new Valine();
-      valine.init({
-        el: '#vcomments',
-        appId: "QcvXSbmzMnoQqTzJPzdPnGGc-gzGzoHsz",
-        appKey: "cFdSUREMDewBegMTetWHHaLs",
-        path: window.location.pathname,
-        placeholder: "想说些什么呢 ..."
-      })
-  }
-</script>
-
-      <section class="author-profile">
-        <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
-          <a href="" class="profile gravatar"><img src="" itemprop="image" alt="" height="70" width="70"></a>
-          <div class="meta">
-            <span class="title">Author</span>
-            <h3 itemprop="name">
-            <a href="" itemprop="url" rel="author"></a>
-            </h3>
-          </div>
-        </div>
-        <hr>
-        <p><i class="iconfont icon-write"></i></p>
-      </section>
-    </main><!-- #main -->
-  </div><!-- #primary -->
+    </div>
+  </div>
 </div>
-
-
 
     </div>    
     <div class="ins-search">

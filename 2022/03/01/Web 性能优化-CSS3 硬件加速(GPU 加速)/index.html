@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">前端开发规范 | miaoda</title>
+  <title itemprop="name">Web 性能优化-CSS3 硬件加速(GPU 加速) | miaoda</title>
   
     <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/WitMiao/blogAssets@0.1.0/img/custom/favicon.ico">
   
@@ -353,540 +353,24 @@
         <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
         
           <header class="entry-header">
-            <h1 class="entry-title">前端开发规范</h1>
-            <p class="entry-census">苗大&nbsp;·&nbsp;2022-2-22&nbsp;·&nbsp;<span id="busuanzi_value_page_pv"></span>次阅读</p></p>
+            <h1 class="entry-title">Web 性能优化-CSS3 硬件加速(GPU 加速)</h1>
+            <p class="entry-census">苗大&nbsp;·&nbsp;2022-3-1&nbsp;·&nbsp;<span id="busuanzi_value_page_pv"></span>次阅读</p></p>
 
             <hr>
           </header>
         
         <div class="entry-content">
-          <p>规范目的</p>
-<ul>
-<li>为提高团队协作效率</li>
-<li>便于后期添加功能及优化维护</li>
-<li>输出高质量的文档<br>命名规范</li>
-<li>为了让大家书写可维护的代码，而不是一次性的代码</li>
-<li>让团队当中其他人看你的代码能一目了然</li>
-<li>甚至一段时间时候后你再看你某个时候写的代码也能看</li>
-</ul>
-<p>普通变量命名规范</p>
-<ul>
-<li> 命名方法 ：驼峰命名法</li>
-<li> 命名规范 ：</li>
-</ul>
+          <p>CSS3 硬件加速简介<br>CSS3 硬件加速又叫做 GPU 加速，是利用 GPU 进行渲染，减少 CPU 操作的一种优化方案。由于 GPU 中的 transform 等 CSS 属性不会触发 repaint，所以能大大提高网页的性能。<br>先看个demo页面示例，左边元素的动画通过 left/top 操作位置实现，右边元素的动画通过 transform: translate 实现，你可以打开 chrome 的 “Paint flashing” 查看，绿色部分是正在 repaint 的内容。<br>从 demo 中可以看到左边的图形在运动时外层有一圈绿色的边框，表示元素不停地 repaint，并且可以看到其运动过程中有丢帧现象，具体表现为运动不连贯，有轻微闪动。</p>
+<p>动画与帧<br>之前学习 flash 的时候，就知道动画是由一帧一帧的图片组成，在浏览器中也是如此。我们首先看一下，浏览器每一帧都做了什么。</p>
 <ol>
-<li> 命名必须是跟需求的内容相关的词，比如说我想申明一个变量，用来表示我的学校，那么我们可以这样定义const mySchool = “我的学校”;</li>
-<li> 命名是复数的时候需要加s,比如说我想申明一个数组，表示很多人的名字，那么我们可以这样定义const names = new Array();</li>
+<li>JavaScript：JavaScript 实现动画效果，DOM 元素操作等。</li>
+<li>Style（计算样式）：确定每个 DOM 元素应该应用什么 CSS 规则。</li>
+<li>Layout（布局）：计算每个 DOM 元素在最终屏幕上显示的大小和位置。由于 web 页面的元素布局是相对的，所以其中任意一个元素的位置发生变化，都会联动的引起其他元素发生变化，这个过程叫 reflow。</li>
+<li>Paint（绘制）：在多个层上绘制 DOM 元素的的文字、颜色、图像、边框和阴影等。</li>
+<li>Composite（渲染层合并）：按照合理的顺序合并图层然后显示到屏幕上。<br>动画与图层<br>浏览器在获取 render tree（详细知识可以查看Web性能优化-页面重绘和回流（重排））后，渲染树中包含了大量的渲染元素，每一个渲染元素会被分到一个图层中，每个图层又会被加载到 GPU 形成渲染纹理。GPU 中 transform 是不会触发 repaint 的，这一点非常类似 3D 绘图功能，最终这些使用 transform 的图层都会由独立的合成器进程进行处理。<br>过程如下：<br>render tree -&gt; 渲染元素 -&gt; 图层 -&gt; GPU 渲染 -&gt; 浏览器复合图层 -&gt; 生成最终的屏幕图像。<br>TIPS: chrome devtools 中可以开启 Rendering 中的 Layer borders 查看图层纹理。<br>其中黄色边框表示该元素有 3d 变换，表示放到一个新的复合层（composited layer）中渲染，蓝色栅格表示正常的 render layer。<br>在文章开始给出的例子中，我们也可以开启 Layer borders，可以观察到，使用 transform: translate 动画的元素，外围有一个黄色的边框，可知其为复合层。</li>
 </ol>
-<p>常量 </p>
-<ul>
-<li>命名方法 : 全部大写</li>
-<li>命名规范 : 使用大写字母和下划线来组合命名，下划线用以分割单词。<br>const MAX_COUNT = 10<br>const URL = ‘<a target="_blank" rel="noopener" href="https://www.baidu.com/&#39;">https://www.baidu.com/&#39;</a></li>
-</ul>
-<p>组件命名规范<br> 官方文档推荐及使用遵循规则：<br> PascalCase (单词首字母大写命名)是最通用的声明约定<br> kebab-case (短横线分隔命名) 是最通用的使用约定</p>
-<ul>
-<li> 组件名应该始终是多个单词的，根组件 App 除外</li>
-<li> 有意义的名词、简短、具有可读性</li>
-<li> 命名遵循 PascalCase 约定</li>
-<li> 公用组件以 Abcd (公司名缩写简称) 开头，如（AbcdDatePicker,AbcdTable）</li>
-<li> 页面内部组件以组件模块名简写为开头，Item 为结尾，如（StaffBenchToChargeItem，StaffBenchAppNotArrItem）</li>
-<li> 使用遵循 kebab-case 约定</li>
-<li>在页面中使用组件需要前后闭合，并以短线分隔，如（<abcd-date-picker></abcd-date-picker>，<abcd-table></abcd-table>）</li>
-<li> 导入及注册组件时，遵循 PascalCase 约定</li>
-<li> 同时还需要注意：必须符合自定义元素规范: 切勿使用保留字。</li>
-</ul>
-<p>method 方法命名命名规范</p>
-<ul>
-<li><p>驼峰式命名，统一使用动词或者动词+名词形式<br>//bad<br>go、nextPage、show、open、login</p>
-<p>  // good<br>jumpPage、openCarInfoDialog</p>
-</li>
-</ul>
-<ul>
-<li><p>请求数据方法，以 data 结尾<br>//bad<br>takeData、confirmData、getList、postForm</p>
-<p>// good<br>getListData、postFormData</p>
-</li>
-</ul>
-<ul>
-<li> init、refresh 单词除外</li>
-<li> 尽量使用常用单词开头（set、get、go、can、has、is）</li>
-</ul>
-<p> 附： 函数方法常用的动词:</p>
-<pre><code class="text">get 获取/set 设置,
-add 增加/remove 删除
-create 创建/destory 移除
-start 启动/stop 停止
-open 打开/close 关闭,
-read 读取/write 写入
-load 载入/save 保存,
-create 创建/destroy 销毁
-begin 开始/end 结束,
-backup 备份/restore 恢复
-import 导入/export 导出,
-split 分割/merge 合并
-inject 注入/extract 提取,
-attach 附着/detach 脱离
-bind 绑定/separate 分离,
-view 查看/browse 浏览
-edit 编辑/modify 修改,
-select 选取/mark 标记
-copy 复制/paste 粘贴,
-undo 撤销/redo 重做
-insert 插入/delete 移除,
-add 加入/append 添加
-clean 清理/clear 清除,
-index 索引/sort 排序
-find 查找/search 搜索,
-increase 增加/decrease 减少
-play 播放/pause 暂停,
-launch 启动/run 运行
-compile 编译/execute 执行,
-debug 调试/trace 跟踪
-observe 观察/listen 监听,
-build 构建/publish 发布
-input 输入/output 输出,
-encode 编码/decode 解码
-encrypt 加密/decrypt 解密,
-compress 压缩/decompress 解压缩
-pack 打包/unpack 解包,
-parse 解析/emit 生成
-connect 连接/disconnect 断开,
-send 发送/receive 接收
-download 下载/upload 上传,
-refresh 刷新/synchronize 同步
-update 更新/revert 复原,
-lock 锁定/unlock 解锁
-check out 签出/check in 签入,
-submit 提交/commit 交付
-push 推/pull 拉,
-expand 展开/collapse 折叠
-begin 起始/end 结束,
-start 开始/finish 完成
-enter 进入/exit 退出,
-abort 放弃/quit 离开
-obsolete 废弃/depreciate 废旧,
-collect 收集/aggregate 聚集
-</code></pre>
-<p>views 下的文件命名</p>
-<ul>
-<li> 只有一个文件的情况下不会出现文件夹，而是直接放在 views 目录下面，如 index.vue</li>
-<li> 尽量是名词,且使用驼峰命名法</li>
-<li> 开头的单词就是所属模块名字（workbenchIndex、workbenchList、workbenchEdit）</li>
-<li> 名字至少两个单词（good: workbenchIndex）（bad:workbench）</li>
-</ul>
-<p>props 命名<br> 在声明 prop 的时候，其命名应该始终使用 camelCase，而在模板中应该始终使用 kebab-case</p>
-<!-- bad -->
-<script>
-props: {
-  'greeting-text': String
-}
-</script>
-
-<p><welcome-message greetingText="hi"></welcome-message></p>
-<!-- good -->
-<script>
-props: {
-  greetingText: String
-}
-</script>
-
-<p><welcome-message greeting-text="hi"></welcome-message></p>
-<p>例外情况</p>
-<ol>
-<li> 作用域不大临时变量可以简写，比如：str，num，bol，obj，fun，arr。</li>
-<li> 循环变量可以简写，比如：i，j，k 等。<br>结构化规范</li>
-</ol>
-<p>目录文件夹及子文件规范</p>
-<ul>
-<li>以下统一管理处均对应相应模块</li>
-<li>以下全局文件文件均以 index.js 导出，并在 main.js 中导入</li>
-<li>以下临时文件，在使用后，接口已经有了，发版后清除<br>src                               源码目录<br>|– api                              接口，统一管理<br>|– assets                           静态资源，统一管理<br>|– components                       公用组件，全局文件<br>|– filters                          过滤器，全局工具<br>|– icons                            图标，全局资源<br>|– datas                            模拟数据，临时存放<br>|– lib                              外部引用的插件存放及修改文件<br>|– mock                             模拟接口，临时存放<br>|– router                           路由，统一管理<br>|– store                            vuex, 统一管理<br>|– views                         视图目录<br>|   |– staffWorkbench               视图模块名<br>|   |– |– staffWorkbench.vue       模块入口页面<br>|   |– |– indexComponents          模块页面级组件文件夹<br>|   |– |– components               模块通用组件文件夹</li>
-</ul>
-<p>vue 文件基本结构</p>
-<pre><code class="vue">  &lt;template&gt;
-    &lt;div&gt;
-      &lt;!--必须在div中编写页面--&gt;
-    &lt;/div&gt;
-  &lt;/template&gt;
-  &lt;script&gt;
-    export default &#123;
-      components : &#123;
-      &#125;,
-      data () &#123;
-        return &#123;
-        &#125;
-      &#125;,
-      mounted() &#123;
-      &#125;，
-      methods: &#123;
-      &#125;
-   &#125;
-  &lt;/script&gt;
-  &lt;!--声明语言，并且添加scoped--&gt;
-  &lt;style lang=&quot;scss&quot; scoped&gt;
-  &lt;/style&gt;
-</code></pre>
-<p>多个特性的元素规范<br> 多个特性的元素应该分多行撰写，每个特性一行。(增强更易读)</p>
-<pre><code class="vue">&lt;!-- bad --&gt;
-&lt;img src=&quot;https://vuejs.org/images/logo.png&quot; alt=&quot;Vue Logo&quot;&gt;
-&lt;my-component foo=&quot;a&quot; bar=&quot;b&quot; baz=&quot;c&quot;&gt;&lt;/my-component&gt;
-
-&lt;!-- good --&gt;
-&lt;img
-  src=&quot;https://vuejs.org/images/logo.png&quot;
-  alt=&quot;Vue Logo&quot;
-&gt;
-&lt;my-component
-  foo=&quot;a&quot;
-  bar=&quot;b&quot;
-  baz=&quot;c&quot;
-&gt;
-&lt;/my-component&gt;
-</code></pre>
-<p>元素特性的顺序<br> 原生属性放前面，指令放后面<br> 如下所示：</p>
-<ul>
-<li>class</li>
-<li>id,ref</li>
-<li>name</li>
-<li>data-*</li>
-<li>src, for, type, href,value,max-length,max,min,pattern</li>
-<li>title, alt，placeholder</li>
-<li>aria-*, role</li>
-<li>required,readonly,disabled</li>
-<li>is</li>
-<li>v-for</li>
-<li>key</li>
-<li>v-if</li>
-<li>v-else-if</li>
-<li>v-else</li>
-<li>v-show</li>
-<li>v-cloak</li>
-<li>v-pre</li>
-<li>v-once</li>
-<li>v-model</li>
-<li>v-bind,:</li>
-<li>v-on,@</li>
-<li>v-html</li>
-<li>v-text</li>
-</ul>
-<p>组件选项顺序<br> 如下所示：</p>
-<ul>
-<li>components</li>
-<li>props</li>
-<li>data</li>
-<li>computed</li>
-<li>created</li>
-<li>mounted</li>
-<li>metods</li>
-<li>filter</li>
-<li>watch</li>
-</ul>
-<p>注释规范<br> 代码注释在一个项目的后期维护中显的尤为重要，所以我们要为每一个被复用的组件编写组件使用说明，为组件中每一个方法编写方法说明<br>务必添加注释列表</p>
-<ol>
-<li> 公共组件使用说明</li>
-<li> 各组件中重要函数或者类说明</li>
-<li> 复杂的业务逻辑处理说明</li>
-<li> 特殊情况的代码处理说明,对于代码中特殊用途的变量、存在临界值、函数中使用的 hack、使用了某种算法或思路等需要进行注释描述</li>
-<li> 多重 if 判断语句</li>
-<li> 注释块必须以/<strong>（至少两个星号）开头</strong>/</li>
-<li> 单行注释使用//</li>
-</ol>
-<p>单行注释<br> 注释单独一行，不要在代码后的同一行内加注释。例如：</p>
-<pre><code class="vue">  //bad
-
-  var name =&quot;abc&quot;; // 姓名    
-
-  //good
-
-  // 姓名
-  var name = &quot;abc&quot;;         
-</code></pre>
-<p>多行注释</p>
-<pre><code class="vue">//组件使用说明，和调用说明
-      /**
-      * 组件名称
-      * @module 组件存放位置
-      * @desc 组件描述
-      * @author 组件作者
-      * @date 2017年12月05日17:22:43
-      * @param &#123;Object&#125; [title]    - 参数说明
-      * @param &#123;String&#125; [columns] - 参数说明
-      * @example 调用示例
-      *  &lt;hbTable :title=&quot;title&quot; :columns=&quot;columns&quot; :tableData=&quot;tableData&quot;&gt;&lt;/hbTable&gt;
-      **/
-</code></pre>
-<p>编码规范<br> 优秀的项目源码，即使是多人开发，看代码也如出一人之手。统一的编码规范，可使代码更易于阅读，易于理解，易于维护。尽量按照 ESLint 格式要求编写代码</p>
-<p>源码风格<br> 使用 ES6 风格编码</p>
-<ol>
-<li> 定义变量使用 let ,定义常量使用 const</li>
-<li>静态字符串一律使用单引号或反引号，动态字符串使用反引号<br>```vue<br>// bad<br>const a = ‘foobar’<br>const b = ‘foo’ + a + ‘bar’</li>
-</ol>
-<p>  // acceptable<br>  const c = <code>foobar</code></p>
-<p>  // good<br>  const a = ‘foobar’<br>  const b = <code>foo$&#123;a&#125;bar</code><br>  const c = ‘foobar’</p>
-<pre><code>
-3. 解构赋值
-- 数组成员对变量赋值时，优先使用解构赋值
-  // 数组解构赋值
-  const arr = [1, 2, 3, 4]
-  // bad
-  const first = arr[0]
-  const second = arr[1]
-
-  // good
-  const [first, second] = arr
-
-
-- 函数的参数如果是对象的成员，优先使用解构赋值
-  // 对象解构赋值
-  // bad
-  function getFullName(user) &#123;
-    const firstName = user.firstName
-    const lastName = user.lastName
-  &#125;
-
-  // good
-  function getFullName(obj) &#123;
-    const &#123; firstName, lastName &#125; = obj
-  &#125;
-
-  // best
-  function getFullName(&#123; firstName, lastName &#125;) &#123;&#125;
-
-
-4.  拷贝数组
- 使用扩展运算符（...）拷贝数组。
-  const items = [1, 2, 3, 4, 5]
-
-  // bad
-  const itemsCopy = items
-
-  // good
-  const itemsCopy = [...items]
-
-
-5.  箭头函数
- 需要使用函数表达式的场合，尽量用箭头函数代替。因为这样更简洁，而且绑定了 this 
-```vue
-  // bad
-  const self = this;
-  const boundMethod = function(...params) &#123;
-    return method.apply(self, params);
-  &#125;
-
-  // acceptable
-  const boundMethod = method.bind(this);
-
-  // best
-  const boundMethod = (...params) =&gt; method.apply(this, params);
-</code></pre>
-<ol start="6">
-<li>模块</li>
-</ol>
-<ul>
-<li><p>如果模块只有一个输出值，就使用 export default，如果模块有多个输出值，就不使用 export default，export default 与普通的 export 不要同时使用</p>
-<pre><code class="vue">// bad
-import * as myObject from &#39;./importModule&#39;
-
-// good
-import myObject from &#39;./importModule&#39;
-</code></pre>
-</li>
-<li><p>如果模块默认输出一个函数，函数名的首字母应该小写。</p>
-<pre><code class="vue">function makeStyleGuide() &#123;
-&#125;
-
-export default makeStyleGuide;
-</code></pre>
-</li>
-<li><p>如果模块默认输出一个对象，对象名的首字母应该大写。 </p>
-<pre><code class="vue">const StyleGuide = &#123;
-  es6: &#123;
-  &#125;
-&#125;;
-
-export default StyleGuide;
-</code></pre>
-</li>
-</ul>
-<p>指令规范</p>
-<ol>
-<li>指令有缩写一律采用缩写形式<br>```vue<br>// bad<br>v-bind:class=”{‘show-left’：true}”<br>v-on:click=”getListData”</li>
-</ol>
-<p>  // good<br>  :class=”{‘show-left’：true}”<br>  @click=”getListData”</p>
-<pre><code>
-2. v-for 循环必须加上 key 属性，在整个 for 循环中 key 需要唯一
-```vue
-  &lt;!-- good --&gt;
-  &lt;ul&gt;
-    &lt;li v-for=&quot;todo in todos&quot; :key=&quot;todo.id&quot;&gt;
-      &#123;&#123; todo.text &#125;&#125;
-    &lt;/li&gt;
-  &lt;/ul&gt;
-
-  &lt;!-- bad --&gt;
-  &lt;ul&gt;
-    &lt;li v-for=&quot;todo in todos&quot;&gt;
-      &#123;&#123; todo.text &#125;&#125;
-    &lt;/li&gt;
-  &lt;/ul&gt;
-</code></pre>
-<ol start="3">
-<li>避免 v-if 和 v-for 同时用在一个元素上（性能问题）<br>以下为两种解决方案：</li>
-</ol>
-<ul>
-<li><p>将数据替换为一个计算属性，让其返回过滤后的列表</p>
-<!-- bad -->
-<ul>
-  <li v-for="user in users" v-if="user.isActive" :key="user.id">
-    
-  </li>
-</ul>
-
-<!-- good -->
-<ul>
-  <li v-for="user in activeUsers" :key="user.id">
-    
-  </li>
-</ul>
-
-<script>
-computed: {
-  activeUsers: function () {
-    return this.users.filter(function (user) {
-      return user.isActive
-    })
-  }
-}
-</script></li>
-</ul>
-<ul>
-<li><p>将 v-if 移动至容器元素上 (比如 ul, ol)</p>
-<!-- bad -->
-<ul>
-  <li v-for="user in users" v-if="shouldShowUsers" :key="user.id">
-    
-  </li>
-</ul>
-
-<!-- good -->
-<ul v-if="shouldShowUsers">
-  <li v-for="user in users" :key="user.id">
-    
-  </li>
-</ul></li>
-</ul>
-<p>Props 规范<br> Props 定义应该尽量详细<br>// bad 这样做只有开发原型系统时可以接受<br>props: [‘status’]</p>
-<p>// good<br>props: {<br>  status: {<br>    type: String,<br>    required: true,<br>    validator: function (value) {<br>      return [<br>        ‘syncing’,<br>        ‘synced’,<br>        ‘version-conflict’,<br>        ‘error’<br>      ].indexOf(value) !== -1<br>    }<br>  }<br>}</p>
-<p>其他</p>
-<ol>
-<li> 避免 this.$parent</li>
-<li> 调试信息 console.log() debugger 使用完及时删除</li>
-<li>除了三目运算，if,else 等禁止简写<br>// bad<br>if (true)<br>   alert(name);<br>console.log(name);</li>
-</ol>
-<p>  // bad<br>  if (true)<br>  alert(name);<br>  console.log(name)</p>
-<p>  // good<br>  if (true) {<br>      alert(name);<br>  }<br>  console.log(name);</p>
-<p>CSS 规范<br>通用规范</p>
-<ol>
-<li> 统一使用”-“连字符</li>
-<li>省略值为 0 时的单位<br>// bad<br>padding-bottom: 0px;<br>margin: 0em;</li>
-</ol>
-<p> // good<br>  padding-bottom: 0;<br>  margin: 0;</p>
-<ol start="3">
-<li> 如果 CSS 可以做到，就不要使用 JS</li>
-<li>建议并适当缩写值，提高可读性，特殊情况除外<br>“建议并适当”是因为缩写总是会包含一系列的值，而有时候我们并不希望设置某一值，反而造成了麻烦，那么这时候你可以不缩写，而是分开写。<br>当然，在一切可以缩写的情况下，请务必缩写，它最大的好处就是节省了字节，便于维护，并使阅读更加一目了然。<br>// bad<br>.box{<br> border-top-style: none;<br> font-family: palatino, georgia, serif;<br> font-size: 100%;<br> line-height: 1.6;<br> padding-bottom: 2em;<br> padding-left: 1em;<br> padding-right: 1em;<br> padding-top: 0;<br>}</li>
-</ol>
-<p>  // good<br>  .box{<br>    border-top: 0;<br>    font: 100%/1.6 palatino, georgia, serif;<br>    padding: 0 1em 2em;<br>  }</p>
-<ol start="5">
-<li>声明应该按照下表的顺序<br>左到右，从上到下<br>无法复制加载中的内容<br>// bad<br>.box {<br> font-family: ‘Arial’, sans-serif;<br> border: 3px solid #ddd;<br> left: 30%;<br> position: absolute;<br> text-transform: uppercase;<br> background-color: #eee;<br> right: 30%;<br> isplay: block;<br> font-size: 1.5rem;<br> overflow: hidden;<br> padding: 1em;<br> margin: 1em;<br>}</li>
-</ol>
-<p>  // good<br>  .box {<br>    display: block;<br>    position: absolute;<br>    left: 30%;<br>    right: 30%;<br>    overflow: hidden;<br>    margin: 1em;<br>    padding: 1em;<br>    background-color: #eee;<br>    border: 3px solid #ddd;<br>    font-family: ‘Arial’, sans-serif;<br>    font-size: 1.5rem;<br>    text-transform: uppercase;<br>  }</p>
-<ol start="6">
-<li>元素选择器应该避免在 scoped 中出现<br>官方文档说明：在 scoped 样式中，类选择器比元素选择器更好，因为大量使用元素选择器是很慢的。</li>
-<li>分类的命名方法<br>使用单个字母加上”-“为前缀<br>布局（grid）（.g-）；<br>模块（module）（.m-）；<br>元件（unit）（.u-）；<br>功能（function）（.f-）；<br>皮肤（skin）（.s-）；<br>状态（.z-）。</li>
-<li>统一语义理解和命名<br>布局（.g-）<!--br {mso-data-placement:same-cell;}--> td {white-space:pre-wrap;border:1px solid #dee0e3;}语义命名简写文档docdoc头部headhd主体bodybd尾部footft主栏mainmn主栏子容器maincmnc侧栏sidesd侧栏子容器sidecsdc盒容器wrap/boxwrap/box
-模块（.m-）、元件（.u-）<br>无法复制加载中的内容<br>功能（.f-）<br>无法复制加载中的内容<br>皮肤（.s-）<br>无法复制加载中的内容<br>状态（.z-）<br>无法复制加载中的内容</li>
-</ol>
-<p>sass 规范</p>
-<ul>
-<li> 当使用 Sass 的嵌套功能的时候，重要的是有一个明确的嵌套顺序，以下内容是一个 SCSS 块应具有的顺序。</li>
-</ul>
-<ol>
-<li>当前选择器的样式属性</li>
-<li>父级选择器的伪类选择器 (:first-letter, :hover, :active etc)</li>
-<li>伪类元素 (:before and :after)</li>
-<li>父级选择器的声明样式 (.selected, .active, .enlarged etc.)</li>
-<li>用 Sass 的上下文媒体查询</li>
-<li>子选择器作为最后的部分<br>.product-teaser {<br>// 1. Style attributes<br>display: inline-block;<br>padding: 1rem;<br>background-color: whitesmoke;<br>color: grey;</li>
-</ol>
-<pre><code>// 2. Pseudo selectors with parent selector
-&amp;:hover &#123;
-  color: black;
-&#125;
-
-// 3. Pseudo elements with parent selector
-&amp;:before &#123;
-  content: &quot;&quot;;
-  display: block;
-  border-top: 1px solid grey;
-&#125;
-
-&amp;:after &#123;
-  content: &quot;&quot;;
-  display: block;
-  border-top: 1px solid grey;
-&#125;
-
-// 4. State classes with parent selector
-&amp;.active &#123;
-  background-color: pink;
-  color: red;
-
-  // 4.2. Pseuso selector in state class selector
-  &amp;:hover &#123;
-    color: darkred;
-  &#125;
-&#125;
-
-// 5. Contextual media queries
-@media screen and (max-width: 640px) &#123;
-  display: block;
-  font-size: 2em;
-&#125;
-
-// 6. Sub selectors
-&gt; .content &gt; .title &#123;
-  font-size: 1.2em;
-
-  // 6.5. Contextual media queries in sub selector
-  @media screen and (max-width: 640px) &#123;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-  &#125;
-&#125;
-</code></pre>
-<p>  }</p>
-<p>特殊规范</p>
-<ul>
-<li><p>对用页面级组件样式，应该是有作用域的</p>
-</li>
-<li><p>对于公用组件或者全局组件库，我们应该更倾向于选用基于 class 的 BEM 策略 </p>
-<style lang='scss'></style> // bad
-
-<!-- 使用 scoped 作用域 -->
-<style lang='scss' scoped></style> // good
-
-<!-- 使用 BEM 约定 -->
-<style> // good
-.c-Button {
-  border: none;
-  border-radius: 2px;
-}
-
-.c-Button--close {
-  background-color: red;
-}
-</style></li>
-</ul>
-<p>参考<br> 风格指南<br> 更好的css方案<br> 前端js规范文档</p>
+<p>在 GPU 渲染的过程中，一些元素会因为符合了某些规则，而被提升为独立的层（黄色边框部分），一旦独立出来，就不会影响其它 DOM 的布局，所以我们可以利用这些规则，将经常变换的 DOM 主动提升到独立的层，那么在浏览器的一帧运行中，就可以减少 Layout 和 Paint 的时间了。<br>创建独立图层<br>哪些规则能让浏览器主动帮我们创建独立的层呢？<br>6. 3D 或者透视变换（perspective，transform） 的 CSS 属性。<br>7. 使用加速视频解码的 video 元素。<br>8. 拥有 3D（WebGL） 上下文或者加速 2D 上下文的 canvas 元素。<br>9. 混合插件（Flash)。<br>10. 对自己的 opacity 做 CSS 动画或使用一个动画 webkit 变换的元素。<br>11. 拥有加速 CSS 过滤器的元素。<br>12. 元素有一个包含复合层的后代节点(换句话说，就是一个元素拥有一个子元素，该子元素在自己的层里)。<br>13. 元素有一个兄弟元素在复合图层渲染，并且该兄弟元素的 z-index 较小，那这个元素也会被应用到复合图层。<br>关于 z-index 导致的硬件加速的问题，可以查看这篇文章 CSS3硬件加速也有坑！！<br>开启 GPU 加速<br>CSS 中的以下几个属性能触发硬件加速：<br>14. transform<br>15. opacity<br>16. filter<br>17. will-change<br>如果有一些元素不需要用到上述属性，但是需要触发硬件加速效果，可以使用一些小技巧来诱导浏览器开启硬件加速。</p>
+<p>CSS<br>.element {<br>    -webkit-transform: translateZ(0);<br>    -moz-transform: translateZ(0);<br>    -ms-transform: translateZ(0);<br>    -o-transform: translateZ(0);<br>    transform: translateZ(0);<br>    /<strong>或者</strong>/<br>    transform: rotateZ(360deg);<br>    transform: translate3d(0, 0, 0);<br>}<br>注意：我在不同的资料中查到的 transform 是否能触发硬件加速的结果不同，自己测试后，发现结果是可以。<br>要注意的问题<br>（1）过多地开启硬件加速可能会耗费较多的内存，因此什么时候开启硬件加速，给多少元素开启硬件加速，需要用测试结果说话。<br>（2）GPU 渲染会影响字体的抗锯齿效果。这是因为 GPU 和 CPU 具有不同的渲染机制，即使最终硬件加速停止了，文本还是会在动画期间显示得很模糊。<br>参考文章<br>• Increase Your Site’s Performance with Hardware-Accelerated CSS<br>• 用CSS开启硬件加速来提高网站性能<br>• css3硬件加速<br>• CSS3硬件加速也有坑！！<br>• GPU加速是什么<br>• 使用CSS3 will-change提高页面滚动、动画等渲染性能</p>
 
         </div>
         <!-- .entry-content -->
@@ -918,7 +402,7 @@ computed: {
           
             <div class="post-nepre half previous">
           
-            <a href="/2022/03/01/Web%20%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-CSS3%20%E7%A1%AC%E4%BB%B6%E5%8A%A0%E9%80%9F(GPU%20%E5%8A%A0%E9%80%9F)/" rel="prev">
+            <a href="/2022/03/03/%E7%BD%91%E9%A1%B5%E8%AE%BE%E8%AE%A1%E6%8E%A2%E7%B4%A2/" rel="prev">
               <div class="background">
                 <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
               </div>
@@ -926,7 +410,7 @@ computed: {
               Previous Post</span>
               <div class="info">
                 <h3>
-                Web 性能优化-CSS3 硬件加速(GPU 加速)</h3>
+                网页设计探索</h3>
                 <hr>
               </div>
             </a>
@@ -936,7 +420,7 @@ computed: {
           
             <div class="post-nepre half next">
           
-            <a href="/2021/08/27/angular%20%E9%A1%B5%E9%9D%A2%E5%86%85%E8%B7%B3%E8%BD%AC(%E9%94%9A%E7%82%B9%E5%AE%9A%E4%BD%8D%E8%A2%AB%E9%A1%B6%E9%83%A8%E5%9B%BA%E5%AE%9A%E5%AF%BC%E8%88%AA%E6%A0%8F%E9%81%AE%E4%BD%8F)%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/" rel="next">
+            <a href="/2022/02/22/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/" rel="next">
               <div class="background">
                 <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
               </div>
@@ -944,7 +428,7 @@ computed: {
               Next Post</span>
               <div class="info">
                 <h3>
-                angular 页面内跳转(锚点定位被顶部固定导航栏遮住)踩坑记录</h3>
+                前端开发规范</h3>
                 <hr>
               </div>
             </a>
